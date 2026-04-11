@@ -1,0 +1,106 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &8488077890739655609
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1691736834735674925, guid: b69e0319c3418b54c8d9eb1d106b26b9, type: 3}
+      propertyPath: goalPlayer2
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7050333333667680842, guid: b69e0319c3418b54c8d9eb1d106b26b9, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7050333333667680842, guid: b69e0319c3418b54c8d9eb1d106b26b9, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7050333333667680842, guid: b69e0319c3418b54c8d9eb1d106b26b9, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7050333333667680842, guid: b69e0319c3418b54c8d9eb1d106b26b9, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7050333333667680842, guid: b69e0319c3418b54c8d9eb1d106b26b9, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7050333333667680842, guid: b69e0319c3418b54c8d9eb1d106b26b9, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7050333333667680842, guid: b69e0319c3418b54c8d9eb1d106b26b9, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7050333333667680842, guid: b69e0319c3418b54c8d9eb1d106b26b9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7050333333667680842, guid: b69e0319c3418b54c8d9eb1d106b26b9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7050333333667680842, guid: b69e0319c3418b54c8d9eb1d106b26b9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7661779164569790252, guid: b69e0319c3418b54c8d9eb1d106b26b9, type: 3}
+      propertyPath: m_Name
+      value: Main Camera Variant
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 354828187140673707, guid: b69e0319c3418b54c8d9eb1d106b26b9, type: 3}
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7661779164569790252, guid: b69e0319c3418b54c8d9eb1d106b26b9, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8514669090059449366}
+  m_SourcePrefab: {fileID: 100100000, guid: b69e0319c3418b54c8d9eb1d106b26b9, type: 3}
+--- !u!1 &2278731598394930325 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7661779164569790252, guid: b69e0319c3418b54c8d9eb1d106b26b9, type: 3}
+  m_PrefabInstance: {fileID: 8488077890739655609}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &8514669090059449366
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2278731598394930325}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 298874bb9ad601540a549798b7f3f660, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ball: {fileID: 0}
+  goalPlayer1CPU: {fileID: 0}
+  goalCPU: {fileID: 0}
+  moveDirection: {x: 0, y: 0}
+  goalKick: 0
+  isGameActive: 0
+  kicked: 1
+  isWaitingPlayer1: 1
+  goalsLimit: 10
+  player1: {fileID: 0}
+  cPU: {fileID: 0}
+  audioControllerCPU: {fileID: 0}
+  uiCanvasControllerCPU: {fileID: 0}
+  powerUps: []
+  timeLimit: 20
+  activationForPlayerBallAceleration: 
+  ballToAcelerate: {fileID: 0}
+  activationForPlayerIncreaseSelf: 
+  activationForPlayerReduceOponent: 
+  maxBalls: 3
+  multipleBallTransform: {x: 0, y: 0, z: 0}
+  multipleBallsActivation: 0
