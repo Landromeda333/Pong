@@ -9,6 +9,7 @@ public class HUDController : MonoBehaviour
     Label _scoreLeft;
     Label _scoreRight;
     Label _countdownText;
+    Label _gameState;
     Label[] _playerStates;
 
     public float countDown = 3.4f;                                                                          // Cuenta atrás
@@ -35,7 +36,7 @@ public class HUDController : MonoBehaviour
         _scoreRight = root.Q<Label>("score-right");
         _playerStates = new[] { root.Q<Label>("player1-state"), root.Q<Label>("player2-state") };
         _countdownText = root.Q<Label>("countdown-text");
-
+        _gameState = root.Q<Label>("gameState-text");
         LvlManager.StartToPlay += StartCountdown;
         LvlManager.ScoreChanged += UpdateScore;
         LvlManager.PlayerReady += UpdatePlayerState;
@@ -71,11 +72,23 @@ public class HUDController : MonoBehaviour
 
 
     /* Métodos */
-
     public void UpdateScore(int left, int right)
     {
-            _scoreLeft.text = left.ToString();
-            _scoreRight.text = right.ToString();
+        _scoreLeft.text = right.ToString();
+        _scoreRight.text = left.ToString();
+    }
+
+    public void UpdateGameState(string stateName)
+    {
+        if (stateName == "")
+        {
+            _gameState.visible = false;
+        }
+        else
+        {
+            _gameState.text = stateName;
+            _gameState.visible = true;
+        }
     }
 
     void UpdatePlayerState(int playerNum)

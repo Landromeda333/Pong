@@ -5,8 +5,7 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
     PlayerInputActions playerInputs;
 
-    PlayerMovement player1Movement;
-    PlayerMovement player2Movement;
+    [HideInInspector] public PlayerMovement player1Movement, player2Movement;
 
     private void Awake()
     {

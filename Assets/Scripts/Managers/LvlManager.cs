@@ -1,3 +1,4 @@
+using Photon.Pun.Demo.PunBasics;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -28,7 +29,7 @@ public class LvlManager : MonoBehaviour
 
     [SerializeField] int goalsLimit = 10;                                                           // Límite de goles
     int[] playersScore = new int[2];
-
+    int playerGoalKick;
     public bool[] playerStateReady = new bool[2];                                                   // Espera a que el Jugador1 esté listo
     [HideInInspector] public bool gameStarted;
 
@@ -50,8 +51,9 @@ public class LvlManager : MonoBehaviour
         powerUps.Add(reduceOpPwrUp);
         powerUps.Add(incrSelfPwrUp);
         powerUps.Add(MultBallsPwrUp);
-        powerUpsTimer = UnityEngine.Random.Range(5f, 20f);                                                                                                         // Tiempo aleatorio para la aparición de PowerUps
+        powerUpsTimer = UnityEngine.Random.Range(5f, 20f);                                          // Tiempo aleatorio para la aparición de PowerUps
         chronometer = Time.time;
+        balls[0].transform.position = Vector3.zero;
         SetGameState(GameState.Preparation);
     }
 
@@ -75,6 +77,7 @@ public class LvlManager : MonoBehaviour
 
     /* Métodos */
 
+    // Cambiar estado de los jugadores
     public void ChangePlayerState(int playerNum)
     {
         if (gameState == GameState.Preparation)
@@ -104,6 +107,7 @@ public class LvlManager : MonoBehaviour
         }
     }
 
+    // Estado de partida
     public void SetGameState(GameState state)
     {
         gameState = state;
@@ -116,25 +120,33 @@ public class LvlManager : MonoBehaviour
                 break;
             case GameState.Preparation:
                 Time.timeScale = 0;
-                balls[0].transform.position = Vector3.zero;
+                foreach (GameObject player in players)
+                {
+                    player.transform.position = new Vector2(player.transform.position.x, 0);
+                }
+                HUDController.Instance.UpdateGameState("Saque de puerta");
                 GameManager.Instance.DeactivateUIInput();
                 break;
             case GameState.InGame:
                 Time.timeScale = 1;
+                HUDController.Instance.UpdateGameState("");
                 GameManager.Instance.DeactivateUIInput();
                 break;
             case GameState.Pause:
                 Time.timeScale = 0;
+                HUDController.Instance.UpdateGameState("Pausa");
                 GameManager.Instance.ActivateUIInput();
                 break;
             case GameState.GameOver:
                 Time.timeScale = 0;
+                HUDController.Instance.UpdateGameState("Final");
                 GameManager.Instance.ActivateUIInput();
                 GameOver();
                 break;
         }
     }
 
+    // Actualización de puntuación
     public void UpdateScore(int playerScore)
     {
         playersScore[playerScore - 1]++;
@@ -152,6 +164,16 @@ public class LvlManager : MonoBehaviour
                     return;
                 }
                 SetGameState(GameState.Preparation);
+                playerGoalKick = playerScore;
+                if (playerScore == 1)                                                                                               // Si han marcado al Jugador1
+                {
+                    balls[0].transform.position = new Vector2(-7, 0);
+                }
+                else                                                                                                              // Si han marcado al Jugador2
+                {
+                    balls[0].transform.position = new Vector2(7, 0);                                                                                                                 // Se reinicia el estado del gol
+                }
+                balls[0].gameObject.SetActive(true);
             }
         }
     }
@@ -178,7 +200,7 @@ public class LvlManager : MonoBehaviour
     public void StartGame()
     {
         AudioManager.Instance.MakeTransition(AudioManager.Instance.backgroundMusic, AudioManager.Instance.countDownClip.length);
-        balls[0].rb.linearVelocity = new Vector2(-4f, UnityEngine.Random.Range(-5f, 5f));
+        balls[0].rb.AddForce(new Vector2(-4f, UnityEngine.Random.Range(-5f, 5f)), ForceMode2D.Impulse);
         gameStarted = true;
     }
 
@@ -188,20 +210,25 @@ public class LvlManager : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
-    /* Corrutinas */
+    // Saque de puerta
     void GoalKick(int playerNum)
     {
-        if (playerNum == 1)                                                                                                                   // Si han marcado al Jugador1
+        if (playerNum > 0)
         {
-            balls[0].transform.position = new Vector2(-7, 0);
+            if (playerGoalKick == 1)
+            {
+                balls[0].rb.AddForce(new Vector2(4f, GameManager.Instance.player1Movement.direction), ForceMode2D.Impulse);
+            }
+            else
+            {
+                balls[0].rb.AddForce(new Vector2(-4f, GameManager.Instance.player2Movement.direction), ForceMode2D.Impulse);
+            }
+            playerGoalKick = 0;
+            SetGameState(GameState.InGame);
         }
-        else                                                                                                              // Si han marcado al Jugador2
-        {
-            balls[0].transform.position = new Vector2(7, 0);                                                                                                                 // Se reinicia el estado del gol
-        }
-        balls[0].gameObject.SetActive(true);
     }
 
+    // Fin de partida
     void GameOver()
     {
         AudioManager.Instance.MakeTransition(AudioManager.Instance.victoryClip, 0);

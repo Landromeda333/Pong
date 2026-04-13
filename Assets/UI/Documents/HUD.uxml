@@ -9,4 +9,5 @@
         <ui:Label text="Esperando..." name="player1-state" class="player-state"/>
         <ui:Label text="Esperando..." name="player2-state" class="player-state"/>
     </ui:VisualElement>
+    <ui:Label name="gameState-text" text="Preparación" enabled="true" class="game-state"/>
 </ui:UXML>
