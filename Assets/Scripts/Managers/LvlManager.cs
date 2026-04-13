@@ -21,7 +21,7 @@ public class LvlManager : MonoBehaviour
 
     [SerializeField] GameObject[] aceletationPwrUp, reduceOpPwrUp, incrSelfPwrUp, MultBallsPwrUp;
     [SerializeField] List<GameObject[]> powerUps = new List<GameObject[]>();                                                                                                               // Lista de PowerUps
-    public GameObject[] players;
+    public List<GameObject> players;
 
     float powerUpsTimer;                                                                                                                                           // Tiempo aleatorio de aparición de los PowerUps
     float chronometer;                                                                                                                                             // Cronómetro para la aparición de PowerUps

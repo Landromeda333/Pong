@@ -14,6 +14,11 @@ public class PlayerMovement : MonoBehaviour
         audSource = GetComponent<AudioSource>();
     }
 
+    private void Start()
+    {
+        LvlManager.Instance.players.Insert(playerNum - 1, gameObject);
+    }
+
     private void OnEnable()
     {
         GameManager.Instance.ActivatePlayerInputs(playerNum, this);
