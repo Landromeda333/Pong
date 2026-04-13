@@ -16,7 +16,14 @@ public class PlayerMovement : MonoBehaviour
 
     private void Start()
     {
-        LvlManager.Instance.players.Insert(playerNum - 1, gameObject);
+        if (LvlManager.Instance.players.Count > playerNum - 1)
+        {
+            LvlManager.Instance.players.Insert(playerNum - 1, gameObject);
+        }
+        else
+        {
+            LvlManager.Instance.players.Add(gameObject);
+        }
     }
 
     private void OnEnable()
