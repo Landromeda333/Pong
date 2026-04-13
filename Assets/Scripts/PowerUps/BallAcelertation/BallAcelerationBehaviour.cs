@@ -7,7 +7,8 @@ public class BallAcelerationBehaviour : MonoBehaviour
     float originalSpeed;
     [SerializeField] float effecTime;
     float countdown;
-    public int playerDisadvantaged;
+
+    [HideInInspector] public int playerDisadvantaged;
 
     private void Awake()
     {
@@ -22,7 +23,7 @@ public class BallAcelerationBehaviour : MonoBehaviour
 
     private void OnDisable()
     {
-        movement.speed = originalSpeed;                                                                                                                           // Se vuelve a la velocidad normal
+        movement.speed = originalSpeed;                 // Se vuelve a la velocidad normal
     }
 
     private void Update()
@@ -37,7 +38,7 @@ public class BallAcelerationBehaviour : MonoBehaviour
     {
         if (enabled)
         {
-            if (playerDisadvantaged == 1)                                                                                                   // Si se aplica al Jugador1
+            if (playerDisadvantaged == 1)               // Si se aplica al Jugador1
             {
                 if (movement.rb.linearVelocityX > 1)    // Si la ha tocado el Jugador1
                 {

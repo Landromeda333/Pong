@@ -2,8 +2,9 @@ using UnityEngine;
 
 public class Goal : MonoBehaviour
 {
-    [SerializeField] int playerGoal;
     AudioSource audSource;
+
+    [SerializeField] int playerGoal;
 
     private void Awake()
     {

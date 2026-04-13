@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
@@ -22,6 +23,11 @@ public class HUDController : MonoBehaviour
         Instance = this;
     }
 
+    private void Start()
+    {
+        AudioManager.Instance.uiAudioSource = GetComponent<AudioSource>();
+    }
+
     private void OnEnable()
     {
         var root = GetComponent<UIDocument>().rootVisualElement;
@@ -29,22 +35,37 @@ public class HUDController : MonoBehaviour
         _scoreRight = root.Q<Label>("score-right");
         _playerStates = new[] { root.Q<Label>("player1-state"), root.Q<Label>("player2-state") };
         _countdownText = root.Q<Label>("countdown-text");
+
+        LvlManager.StartToPlay += StartCountdown;
         LvlManager.ScoreChanged += UpdateScore;
         LvlManager.PlayerReady += UpdatePlayerState;
     }
 
     private void OnDisable()
     {
+        LvlManager.StartToPlay -= StartCountdown;
         LvlManager.ScoreChanged -= UpdateScore;
         LvlManager.PlayerReady -= UpdatePlayerState;
     }
 
     private void Update()
     {
-        if (countDown > 0)
+        if (_countdownText.visible)
         {
-            countDown -= Time.deltaTime;
-            Debug.Log(countDown);
+            if (countDown > 0)
+            {
+                countDown -= Time.deltaTime;
+                _countdownText.text = countDown.ToString("0");
+            }
+            else
+            {
+                _countdownText.visible = false;
+                foreach (Label playerState in _playerStates)
+                {
+                    playerState.visible = false;
+                }
+                LvlManager.Instance.StartGame();
+            }
         }
     }
 
@@ -53,8 +74,8 @@ public class HUDController : MonoBehaviour
 
     public void UpdateScore(int left, int right)
     {
-        _scoreLeft.text = left.ToString();
-        _scoreRight.text = right.ToString();
+            _scoreLeft.text = left.ToString();
+            _scoreRight.text = right.ToString();
     }
 
     void UpdatePlayerState(int playerNum)
@@ -67,6 +88,11 @@ public class HUDController : MonoBehaviour
         {
             _playerStates[1].text = "¡Preparado!";
         }
+    }
+
+    public void StartCountdown()
+    {
+        _countdownText.visible = true;
     }
 
     public void BackToMenu()                                                                                // Vuelve al menú principal

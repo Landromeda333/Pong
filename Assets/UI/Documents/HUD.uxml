@@ -1,7 +1,12 @@
 <ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/UI/Styles/HUD.uss?fileID=7433441132597879392&amp;guid=3d5a2b99d7311264790b195ad017f3da&amp;type=3#HUD"/>
     <ui:VisualElement name="score-container" class="score-container">
-        <ui:Label text="0" name="left-score" class="score-label"/>
-        <ui:Label text="0" name="right-score" class="score-label"/>
+        <ui:Label text="0" name="score-left" class="score-label"/>
+        <ui:Label text="0" name="score-right" class="score-label"/>
+    </ui:VisualElement>
+    <ui:Label name="countdown-text" text="3" enabled="true" class="countdown-label" style="visibility: hidden;"/>
+    <ui:VisualElement name="playersState-container">
+        <ui:Label text="Esperando..." name="player1-state" class="player-state"/>
+        <ui:Label text="Esperando..." name="player2-state" class="player-state"/>
     </ui:VisualElement>
 </ui:UXML>

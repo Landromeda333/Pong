@@ -17,20 +17,20 @@ public class LvlManager : MonoBehaviour
     }
     public GameState gameState;
 
-    [SerializeField] List<BallMovement> balls = new List<BallMovement>();                                                                                                                              // La bola que se va a instanciar una vez que se destruya
+    [SerializeField] List<BallMovement> balls = new List<BallMovement>();                           // La bola que se va a instanciar una vez que se destruya
 
     [SerializeField] GameObject[] aceletationPwrUp, reduceOpPwrUp, incrSelfPwrUp, MultBallsPwrUp;
-    [SerializeField] List<GameObject[]> powerUps = new List<GameObject[]>();                                                                                                               // Lista de PowerUps
+    [SerializeField] List<GameObject[]> powerUps = new List<GameObject[]>();                        // Lista de PowerUps
     public List<GameObject> players;
 
-    float powerUpsTimer;                                                                                                                                           // Tiempo aleatorio de aparición de los PowerUps
-    float chronometer;                                                                                                                                             // Cronómetro para la aparición de PowerUps
+    float powerUpsTimer;                                                                            // Tiempo aleatorio de aparición de los PowerUps
+    float chronometer;                                                                              // Cronómetro para la aparición de PowerUps
 
-    [SerializeField] int goalsLimit = 10;                                                                                                                          // Límite de goles
+    [SerializeField] int goalsLimit = 10;                                                           // Límite de goles
     int[] playersScore = new int[2];
 
-    public bool[] playerStateReady = new bool[2];                                                                                                                  // Espera a que el Jugador1 esté listo
-    bool gameStarted;
+    public bool[] playerStateReady = new bool[2];                                                   // Espera a que el Jugador1 esté listo
+    [HideInInspector] public bool gameStarted;
 
     private void Awake()
     {
@@ -78,7 +78,7 @@ public class LvlManager : MonoBehaviour
     public void ChangePlayerState(int playerNum)
     {
         if (gameState == GameState.Preparation)
-        {   
+        {
             if (!gameStarted)
             {
                 playerStateReady[playerNum - 1] = true;
@@ -91,10 +91,9 @@ public class LvlManager : MonoBehaviour
                     }
                     else if (i == 1)
                     {
+                        StartToPlay?.Invoke();
                         SetGameState(GameState.InGame);
-                        AudioManager.Instance.PlayClip(AudioManager.Instance.coundDownClip);
-                        AudioManager.Instance.MakeTransition(AudioManager.Instance.backgroundMusic, AudioManager.Instance.coundDownClip.length);
-                        balls[0].rb.linearVelocity = new Vector2(-4f, UnityEngine.Random.Range(-5f, 5f));
+                        AudioManager.Instance.PlayClip(AudioManager.Instance.countDownClip);
                     }
                 }
             }
@@ -107,6 +106,7 @@ public class LvlManager : MonoBehaviour
 
     public void SetGameState(GameState state)
     {
+        gameState = state;
         switch (state)
         {
             case GameState.MainMenu:
@@ -175,6 +175,13 @@ public class LvlManager : MonoBehaviour
         }
     }
 
+    public void StartGame()
+    {
+        AudioManager.Instance.MakeTransition(AudioManager.Instance.backgroundMusic, AudioManager.Instance.countDownClip.length);
+        balls[0].rb.linearVelocity = new Vector2(-4f, UnityEngine.Random.Range(-5f, 5f));
+        gameStarted = true;
+    }
+
     // Reinicio del nivel
     public void RestartGame()
     {
@@ -214,6 +221,7 @@ public class LvlManager : MonoBehaviour
     }
 
     /* Eventos */
+    public static event Action StartToPlay;
     public static event Action<int, int> ScoreChanged;
     public static event Action<int> PlayerReady;
     public static event Action GameFinished;

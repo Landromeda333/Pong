@@ -11,21 +11,22 @@ public class AudioManager : MonoBehaviour
 
     [SerializeField] AudioMixerSnapshot normal, fadeOut;
 
-    [SerializeField] AudioSource musicSource, uiAudioSource;
+    AudioSource musicSource;
+    public AudioSource uiAudioSource;
 
-    public AudioClip coundDownClip, backgroundMusic, victoryClip; // Sonido de la cuenta atrás
+    public AudioClip countDownClip, backgroundMusic, victoryClip; // Sonido de la cuenta atrás
 
     private void Awake()
     {
         if (Instance == null)
         {
             Instance = this;
-            uiAudioSource = GetComponent<AudioSource>();
         }
         else
         {
             Destroy(this);
         }
+        musicSource =GetComponent<AudioSource>();
     }
 
     // Aplicación del nuevo volumen de la música

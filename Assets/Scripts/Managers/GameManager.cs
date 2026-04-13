@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        DontDestroyOnLoad(gameObject);
     }
 
     public void ActivatePlayerInputs(int playerNum, PlayerMovement playerMovement)
