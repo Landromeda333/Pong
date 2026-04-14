@@ -184,6 +184,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Player1Movement
   direction: 0
   playerNum: 1
+  kickDir: 0
+  canGoalKick: 0
 --- !u!82 &7230886873401895190
 AudioSource:
   m_ObjectHideFlags: 0

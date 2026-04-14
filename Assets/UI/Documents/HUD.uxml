@@ -10,4 +10,10 @@
         <ui:Label text="Esperando..." name="player2-state" class="player-state"/>
     </ui:VisualElement>
     <ui:Label name="gameState-text" text="Preparación" enabled="true" class="game-state"/>
+    <ui:VisualElement name="pause-panel" enabled="true">
+        <ui:Label text="Pausa" name="pause-title" class="pause-title"/>
+        <ui:Button text="Continuar" name="resume-button" class="resume-button pause-button"/>
+        <ui:Button text="Ajustes" name="settings-button" class="settings-button pause-button"/>
+        <ui:Button text="Menú principal" name="mainMenu-button" class="mainmenu-button pause-button"/>
+    </ui:VisualElement>
 </ui:UXML>

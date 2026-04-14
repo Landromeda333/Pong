@@ -2,13 +2,12 @@ using UnityEngine;
 
 public class BallMovement : MonoBehaviour
 {
-    [SerializeField] AudioClip collisionSound;                                                            // Audio para cada vez que choque
+    [SerializeField] AudioClip collisionSound;                      // Audio para cada vez que choque
 
     public Rigidbody2D rb;
 
-    public float speed;                                                                               // Velocidad de la bola
-    public int lastPlayerTouched;                                                                      // Se guarda el último toque para aplicarlo a los Power Ups
-    public int lastTouched;                                                             
+    public float speed;                                             // Velocidad de la bola
+    public int lastPlayerTouched;                                   // Se guarda el último toque para aplicarlo a los Power Ups
 
     private void Awake()
     {
@@ -18,6 +17,7 @@ public class BallMovement : MonoBehaviour
     private void OnDisable()
     {
         rb.linearVelocity = Vector2.zero;
+        lastPlayerTouched = 0;
     }
 
     // Función para los rebotes y sonidos de la pelota

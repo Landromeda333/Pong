@@ -1,4 +1,5 @@
 using UnityEngine;
+using static LvlManager;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -7,6 +8,13 @@ public class PlayerMovement : MonoBehaviour
     public float direction;
     float speed = 6f;                                                           // Velocidad de movimiento del jugador
     [SerializeField] int playerNum;
+    enum KickDirection
+    {
+        Right = 1,
+        Left = -1
+    }
+    [SerializeField] KickDirection kickDir;
+    [HideInInspector] public bool canGoalKick;
 
     private void Awake()
     {
@@ -16,19 +24,19 @@ public class PlayerMovement : MonoBehaviour
 
     private void Start()
     {
-        if (LvlManager.Instance.players.Count > playerNum - 1)
+        if (GameManager.Instance.playersMovement.Count > playerNum-1)
         {
-            LvlManager.Instance.players.Insert(playerNum - 1, gameObject);
+            GameManager.Instance.playersMovement.Insert(playerNum - 1, this);
         }
         else
         {
-            LvlManager.Instance.players.Add(gameObject);
+            GameManager.Instance.playersMovement.Add(this);
         }
     }
 
     private void OnEnable()
     {
-        GameManager.Instance.ActivatePlayerInputs(playerNum, this);
+        GameManager.Instance.ActivatePlayerInputs(playerNum);
     }
 
     private void OnDisable()
@@ -39,7 +47,7 @@ public class PlayerMovement : MonoBehaviour
     /* Movimiento de la pala */
     void FixedUpdate()
     {
-        if (LvlManager.Instance.gameState == LvlManager.GameState.InGame)
+        if (Instance.gameState == GameState.InGame)
         {
             rb.linearVelocityY = direction * speed;
         }
@@ -51,6 +59,17 @@ public class PlayerMovement : MonoBehaviour
         if (collision.collider.CompareTag("Wall"))
         {
             audSource.Play();
+        }
+    }
+
+    // Saque de puerta
+    public void GoalKick()
+    {
+        if (canGoalKick)
+        {
+            Instance.SetGameState(GameState.InGame);
+            Instance.balls[0].rb.AddForce(new Vector2(4 * (int)kickDir, direction), ForceMode2D.Impulse);
+            canGoalKick = false;
         }
     }
 }

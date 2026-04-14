@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 5732742855282202154}
   - component: {fileID: 1741188784552466236}
   - component: {fileID: 7567361545228372162}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Ball
   m_TagString: Ball
   m_Icon: {fileID: 0}
@@ -272,7 +272,6 @@ MonoBehaviour:
   rb: {fileID: 0}
   speed: 6
   lastPlayerTouched: 0
-  lastTouched: 0
 --- !u!114 &7567361545228372162
 MonoBehaviour:
   m_ObjectHideFlags: 0

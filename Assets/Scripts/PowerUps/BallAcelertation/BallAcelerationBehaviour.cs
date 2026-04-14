@@ -34,7 +34,7 @@ public class BallAcelerationBehaviour : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnCollisionEnter2D (Collision2D collision)
     {
         if (enabled)
         {
@@ -60,7 +60,6 @@ public class BallAcelerationBehaviour : MonoBehaviour
                     movement.rb.linearVelocityX /= 2;   // Se reduce la velocidad de la bola
                 }
             }
-            Debug.Log(movement.rb.linearVelocityX);
         }
     }
 }

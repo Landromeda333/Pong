@@ -1,4 +1,3 @@
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
@@ -11,7 +10,10 @@ public class HUDController : MonoBehaviour
     Label _countdownText;
     Label _gameState;
     Label[] _playerStates;
-
+    VisualElement _pausePanel;
+    Button _resumeButton;
+    Button _settingsButton;
+    Button _mainMenuButton;
     public float countDown = 3.4f;                                                                          // Cuenta atrás
 
     private void Awake()
@@ -37,6 +39,17 @@ public class HUDController : MonoBehaviour
         _playerStates = new[] { root.Q<Label>("player1-state"), root.Q<Label>("player2-state") };
         _countdownText = root.Q<Label>("countdown-text");
         _gameState = root.Q<Label>("gameState-text");
+        _pausePanel = root.Q<VisualElement>("pause-panel");
+
+        _resumeButton = root.Q<Button>("resume-button");
+        _resumeButton.RegisterCallback<ClickEvent>(BackToGame);
+
+        _settingsButton = root.Q<Button>("settings-button");
+        _settingsButton.RegisterCallback<ClickEvent>(ViewSettings);
+
+        _mainMenuButton = root.Q<Button>("mainMenu-button");
+        _mainMenuButton.RegisterCallback<ClickEvent>(BackToMenu);
+
         LvlManager.StartToPlay += StartCountdown;
         LvlManager.ScoreChanged += UpdateScore;
         LvlManager.PlayerReady += UpdatePlayerState;
@@ -44,6 +57,10 @@ public class HUDController : MonoBehaviour
 
     private void OnDisable()
     {
+        _resumeButton?.UnregisterCallback<ClickEvent>(BackToGame);
+        _settingsButton?.UnregisterCallback<ClickEvent>(ViewSettings);
+        _mainMenuButton?.UnregisterCallback<ClickEvent>(BackToMenu);
+
         LvlManager.StartToPlay -= StartCountdown;
         LvlManager.ScoreChanged -= UpdateScore;
         LvlManager.PlayerReady -= UpdatePlayerState;
@@ -108,18 +125,34 @@ public class HUDController : MonoBehaviour
         _countdownText.visible = true;
     }
 
-    public void BackToMenu()                                                                                // Vuelve al menú principal
+    public bool ShowPause()
     {
-        SceneManager.LoadScene("MainMenu");
-    }
-
-    public void ViewControls(ClickEvent evt)                                                                              // Muestra los controles
-    {
-        Debug.Log("Activar panel de controles");
+        if (_pausePanel.style.display == DisplayStyle.Flex)
+        {
+            _pausePanel.style.display = DisplayStyle.None;
+            return false;
+        }
+        else
+        {
+            _pausePanel.style.display = DisplayStyle.Flex;
+            return true;
+        }
     }
 
     public void BackToGame(ClickEvent evt)                                                                                // Vuelve al juego y quita los controles
     {
         Debug.Log("Volver a la partida");
     }
+
+    public void BackToMenu(ClickEvent evt)                                                                                // Vuelve al menú principal
+    {
+        SceneManager.LoadScene("MainMenu");
+    }
+
+    public void ViewSettings(ClickEvent evt)                                                                              // Muestra los controles
+    {
+        Debug.Log("Activar panel de controles");
+    }
+
+    
 }
