@@ -6,7 +6,7 @@ public class SettingsController : MonoBehaviour
 {
     public static SettingsController Instance;
 
-    [SerializeField] GameEvent onPauseRequested;
+    [SerializeField] GameEvent onBackPressed;
 
     DropdownField _fpsLimit, _screenMode;
 
@@ -38,7 +38,7 @@ public class SettingsController : MonoBehaviour
         var root = doc.rootVisualElement;
 
         _backButton = root.Q<Button>("back-button");
-        _backButton.RegisterCallback<ClickEvent>(ShowOrHide);
+        _backButton.RegisterCallback<ClickEvent>(OnBackClicked);
 
         _fpsLimit = root.Q<DropdownField>("fps-limit");
         _fpsLimit.choices = new List<string> { "30", "60", "120", "Sin Límite" };
@@ -61,26 +61,21 @@ public class SettingsController : MonoBehaviour
 
     private void OnDisable()
     {
-        _backButton?.UnregisterCallback<ClickEvent>(ShowOrHide);
+        _backButton?.UnregisterCallback<ClickEvent>(OnBackClicked);
 
         _fpsLimit?.UnregisterValueChangedCallback(OnFPSChanged);
         _screenMode?.UnregisterValueChangedCallback(OnScreenModeChanged);
 
         _musicVolume?.UnregisterValueChangedCallback(OnMusicVolumeChanged);
         _sfxVolume?.UnregisterValueChangedCallback(OnSFXVolumeChanged);
-
-        onPauseRequested.Raise();
     }
 
     /* Métodos */
-    void Back()
-    {
-        gameObject.SetActive(false);
-    }
 
-    void Show()
+    void OnBackClicked(ClickEvent evt)
     {
-        gameObject.SetActive(true);
+        onBackPressed.Raise();
+        gameObject.SetActive(false);
     }
 
     public void ShowOrHide(ClickEvent evt)
@@ -117,5 +112,16 @@ public class SettingsController : MonoBehaviour
     void OnSFXVolumeChanged(ChangeEvent<float> evt)
     {
         SettingsManager.Instance.ChangeSFXVolume(evt.newValue);
+    }
+
+    /* Métodos para Game Event Listener */
+    public void Back()
+    {
+        gameObject.SetActive(false);
+    }
+
+    public void Show()
+    {
+        gameObject.SetActive(true);
     }
 }

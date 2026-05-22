@@ -272,6 +272,7 @@ GameObject:
   - component: {fileID: 1087923491}
   - component: {fileID: 1087923495}
   - component: {fileID: 1087923496}
+  - component: {fileID: 1087923498}
   m_Layer: 0
   m_Name: GameManagement
   m_TagString: Untagged
@@ -561,6 +562,34 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
   gameState: 0
   previousGameState: 0
+--- !u!114 &1087923498
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1087923489}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e101b5a3e6413674989f56daff713266, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::IntGameEventListener
+  evt: {fileID: 11400000, guid: c1a8a7de9b900844c939bd4dc2c85e9a, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1087923497}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: GameOver
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1546345688
 GameObject:
   m_ObjectHideFlags: 0
@@ -648,6 +677,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 397154469583445046, guid: 26c1fb6d79c704647adcf9395eca5429, type: 3}
+      propertyPath: onBackPressed
+      value: 
+      objectReference: {fileID: 11400000, guid: cf58cc32460cd144eb88827c2fe10560, type: 2}
     - target: {fileID: 1877102101393748084, guid: 26c1fb6d79c704647adcf9395eca5429, type: 3}
       propertyPath: m_LocalPosition.x
       value: -2.01226

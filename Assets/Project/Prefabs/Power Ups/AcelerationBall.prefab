@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1411556950078207902}
   - component: {fileID: -4522737345995544228}
   - component: {fileID: 1180453902010328129}
-  - component: {fileID: -8639423829544668367}
+  - component: {fileID: 2539518521913016694}
   m_Layer: 0
   m_Name: AcelerationBall
   m_TagString: PowerUp
@@ -152,7 +152,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2d45386302e7ce4ba2dc8670361f020, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &-8639423829544668367
+--- !u!114 &2539518521913016694
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -161,9 +161,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 6984125839231521566}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 46898f70dbbb33043a510b5012d52071, type: 3}
+  m_Script: {fileID: 11500000, guid: e101b5a3e6413674989f56daff713266, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::GameEventListener
+  m_EditorClassIdentifier: Assembly-CSharp::IntGameEventListener
   evt: {fileID: 11400000, guid: c1a8a7de9b900844c939bd4dc2c85e9a, type: 2}
   response:
     m_PersistentCalls:

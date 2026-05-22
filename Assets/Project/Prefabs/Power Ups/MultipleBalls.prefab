@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3353076266314072419}
   - component: {fileID: 6329780146785408761}
   - component: {fileID: 4739735979808301963}
-  - component: {fileID: -4805043388296335251}
+  - component: {fileID: 2560254489993061972}
   m_Layer: 0
   m_Name: MultipleBalls
   m_TagString: PowerUp
@@ -152,7 +152,7 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.68, y: 0.67}
   m_EdgeRadius: 0
---- !u!114 &-4805043388296335251
+--- !u!114 &2560254489993061972
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -161,9 +161,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 3789155631673901107}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 46898f70dbbb33043a510b5012d52071, type: 3}
+  m_Script: {fileID: 11500000, guid: e101b5a3e6413674989f56daff713266, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::GameEventListener
+  m_EditorClassIdentifier: Assembly-CSharp::IntGameEventListener
   evt: {fileID: 11400000, guid: c1a8a7de9b900844c939bd4dc2c85e9a, type: 2}
   response:
     m_PersistentCalls:

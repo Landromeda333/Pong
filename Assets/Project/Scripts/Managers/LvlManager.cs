@@ -7,7 +7,8 @@ public class LvlManager : MonoBehaviour
 {
     public static LvlManager Instance;
 
-    [SerializeField] GameEvent startToPlay, onGameFinshed;                                          //
+    [SerializeField] GameEvent startToPlay;                                                         //
+    [SerializeField] IntGameEvent playerReady, onGameOver;                                          //
 
     public List<BallMovement> balls = new List<BallMovement>();                                     // La bola que se va a instanciar una vez que se destruya
 
@@ -79,7 +80,7 @@ public class LvlManager : MonoBehaviour
         if (GameManager.Instance.gameState == GameManager.GameState.Preparation && !gameStarted)
         {
             playerStateReady[playerNum - 1] = true;
-            PlayerReady?.Invoke(playerNum);
+            playerReady.Raise(playerNum);
             for (int i = 0; i < 2; i++)
             {
                 if (!playerStateReady[i])
@@ -103,7 +104,7 @@ public class LvlManager : MonoBehaviour
         ScoreChanged?.Invoke(playersScore[0], playersScore[1]);
         if (playersScore[playerScore-1] >= goalsTarget)
         {
-            GameManager.Instance.SetGameState(GameManager.GameState.GameOver);
+            onGameOver.Raise(playerScore);
         }
         else
         {
@@ -160,14 +161,13 @@ public class LvlManager : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
+    /* Métodos para Game Event Listener */
     // Fin de partida
     public void GameOver()
     {
         AudioManager.Instance.MakeTransition(AudioManager.Instance.victoryClip, 0);
-        onGameFinshed.Raise();
     }
 
     /* Eventos */
     public static event Action<int, int> ScoreChanged;
-    public static event Action<int> PlayerReady;
 }

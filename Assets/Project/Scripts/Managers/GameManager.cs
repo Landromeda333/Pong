@@ -37,7 +37,10 @@ public class GameManager : MonoBehaviour
     // Estado de partida
     public void SetGameState(GameState state)
     {
-        previousGameState = gameState;
+        if (state != gameState)
+        {
+            previousGameState = gameState;
+        }
         switch (state)
         {
             case GameState.MainMenu:
@@ -69,9 +72,14 @@ public class GameManager : MonoBehaviour
                 Time.timeScale = 0;
                 HUDController.Instance.UpdateGameState("Final");
                 InputsGameManager.Instance.UIOnly();
-                LvlManager.Instance.GameOver();
                 break;
         }
         gameState = state;
+    }
+
+    /* Métodos para Game Event Listener */
+    public void GameOver()
+    {
+        SetGameState(GameState.GameOver);
     }
 }

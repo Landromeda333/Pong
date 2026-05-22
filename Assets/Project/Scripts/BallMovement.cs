@@ -7,7 +7,8 @@ public class BallMovement : MonoBehaviour
     public Rigidbody2D rb;
 
     public float speed;                                             // Velocidad de la bola
-    public int lastPlayerTouched;                                   // Se guarda el último toque para aplicarlo a los Power Ups
+
+    [HideInInspector] public int lastPlayerTouched;                 // Se guarda el último toque para aplicarlo a los Power Ups
 
     private void Awake()
     {
