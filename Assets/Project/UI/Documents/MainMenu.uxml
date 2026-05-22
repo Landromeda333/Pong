@@ -1,0 +1,10 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/Project/UI/Styles/MainMenu.uss?fileID=7433441132597879392&amp;guid=2802b154c3509c248b90794d8063a535&amp;type=3#MainMenu"/>
+    <ui:VisualElement class="main-panel">
+        <ui:Label text="Pong" name="Title" focusable="false" class="title-label" style="color: rgb(255, 255, 255); font-size: 100px; -unity-text-align: middle-center;"/>
+        <ui:Button text="J1 vs J2" name="jVSj-button" class="play-button"/>
+        <ui:Button text="J1 vs CPU" name="jVSCPU-button" enabled="true" class="play-button" style="display: none;"/>
+        <ui:Button text="Ajustes" name="settings-button" class="settings-button"/>
+        <ui:Button text="Salir" double-click-selects-word="false" triple-click-selects-line="false" emoji-fallback-support="true" name="quit-button" class="quit-button"/>
+    </ui:VisualElement>
+</ui:UXML>
