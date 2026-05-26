@@ -63,11 +63,13 @@ public class PauseUIController : MonoBehaviour
     {
         if (_pausePanel.style.display == DisplayStyle.Flex)
         {
+            AudioManager.Instance.PauseMusic(false);
             _pausePanel.style.display = DisplayStyle.None;
             continueGame.Raise();
         }
         else
         {
+            AudioManager.Instance.PauseMusic(true);
             _pausePanel.style.display = DisplayStyle.Flex;
         }
     }

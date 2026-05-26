@@ -13,13 +13,10 @@ public class MainMenuUIController : MonoBehaviour
 
     /* Buttons */
     Button _jVSjButton, _jVSCPUButton, _settingsButton, _quitButton;// Botones del menú principal
-    private void Start()
-    {
-        _versionText.text = "Ver. " + Application.version;
-    }
+
     private void OnEnable()
     {
-         var root = GetComponent<UIDocument>().rootVisualElement;
+        var root = GetComponent<UIDocument>().rootVisualElement;
 
         _versionText = root.Q<Label>("version-text");
 
@@ -44,6 +41,14 @@ public class MainMenuUIController : MonoBehaviour
         _quitButton?.UnregisterCallback<ClickEvent>(OnQuitClicked);
     }
 
+
+    private void Start()
+    {
+        GameManager.Instance?.SetGameState(GameManager.GameState.MainMenu);
+        AudioManager.Instance?.ChangeMusic(AudioManager.Instance?.mainMenuClip);
+        _versionText.text = "Ver. " + Application.version;
+    }
+ 
     /* Métodos para la UI*/
     // Carga el nivel de J1 vs J2
     void OnJvsJClicked(ClickEvent evt)

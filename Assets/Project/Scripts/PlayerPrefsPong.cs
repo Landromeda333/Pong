@@ -14,8 +14,8 @@ public class PlayerPrefsPong : MonoBehaviour
             PlayerPrefs.SetString("ScreenMode", "Pantalla completa");
 
             /* Audio */
-            PlayerPrefs.SetFloat("MusicVolume", 100);
-            PlayerPrefs.SetFloat("SFXVolume", 100);
+            PlayerPrefs.SetFloat("MusicVolume", 80);
+            PlayerPrefs.SetFloat("SFXVolume", 80);
         }
     }
 }

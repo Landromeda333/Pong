@@ -28,8 +28,8 @@ public class SettingsManager : MonoBehaviour
         ChangeScreenMode(PlayerPrefs.GetString("ScreenMode", "Pantalla completa"));
 
         // Sonido
-        ChangeSFXVolume(PlayerPrefs.GetFloat("SFXVolume", 10));
-        ChangeMusicVolume(PlayerPrefs.GetFloat("MusicVolume", 10));
+        ChangeSFXVolume(PlayerPrefs.GetFloat("SFXVolume", 80));
+        ChangeMusicVolume(PlayerPrefs.GetFloat("MusicVolume", 80));
     }
 
     /* Métodos */

@@ -634,6 +634,34 @@ PrefabInstance:
       propertyPath: m_Name
       value: PausePanel
       objectReference: {fileID: 0}
+    - target: {fileID: 6975755363903312249, guid: fc3da9b2824155440816e834babe77fb, type: 3}
+      propertyPath: response.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6975755363903312249, guid: fc3da9b2824155440816e834babe77fb, type: 3}
+      propertyPath: response.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6975755363903312249, guid: fc3da9b2824155440816e834babe77fb, type: 3}
+      propertyPath: response.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 11500000, guid: 2f836f85b4a6aa84cbd7a99be3bc23d5, type: 3}
+    - target: {fileID: 6975755363903312249, guid: fc3da9b2824155440816e834babe77fb, type: 3}
+      propertyPath: response.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6975755363903312249, guid: fc3da9b2824155440816e834babe77fb, type: 3}
+      propertyPath: response.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6975755363903312249, guid: fc3da9b2824155440816e834babe77fb, type: 3}
+      propertyPath: response.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: PauseController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6975755363903312249, guid: fc3da9b2824155440816e834babe77fb, type: 3}
+      propertyPath: response.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 8194417766707821598, guid: fc3da9b2824155440816e834babe77fb, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.18846

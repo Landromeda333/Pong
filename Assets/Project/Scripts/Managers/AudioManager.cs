@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
 
@@ -8,9 +7,6 @@ public class AudioManager : MonoBehaviour
 {
     /* Singleton */
     public static AudioManager Instance;
-
-    /*  Corrutinas */
-    Coroutine playListCort;
 
     /* Audio Mixer */
     public AudioMixer audioMixer;
@@ -21,7 +17,7 @@ public class AudioManager : MonoBehaviour
     /* AudioSource */
     [SerializeField] AudioSource musicSource, uiAudioSource;
 
-    public AudioClip countDownClip, backgroundMusic, victoryClip; // Sonido de la cuenta atrás, Música de fondo y música de fin de partida
+    public AudioClip mainMenuClip, countDownClip, backgroundMusic, victoryClip; // Sonido de la cuenta atrás, Música de fondo y música de fin de partida
 
     private void Awake()
     {
@@ -40,15 +36,13 @@ public class AudioManager : MonoBehaviour
     // Aplicación del nuevo volumen de la música
     public void SetMusicVolume(float value)
     {
-        float dB = Mathf.Log10(Mathf.Max(value, 0.0001f)) * 20;
-        audioMixer.SetFloat("MusicVolume", dB);
+        audioMixer.SetFloat("MusicVolume", value - 80);
     }
 
     // Aplicación del nuevo volumen de los efectos
     public void SetSFXVolume(float value)
     {
-        float dB = Mathf.Log10(Mathf.Max(value, 0.0001f)) * 20;
-        audioMixer.SetFloat("SFXVolume", dB);
+        audioMixer.SetFloat("SFXVolume", value - 80);
     }
 
     // Reproducción de algún sonido de la interfaz
@@ -69,20 +63,22 @@ public class AudioManager : MonoBehaviour
         normal.TransitionTo(time);
     }
 
-    // Transición a la siguiente canción
-    public void MakeTransition(AudioClip clip, float time)
+    // Cambio de lista de música
+    public void ChangeMusic(AudioClip music)
     {
-        StartCoroutine(FadeAndPlay(clip, time));
+        StartCoroutine(FadeAndPlay(music, 0.3f));
     }
 
-    // Cambio de lista de música
-    public void ChangePlaylist(List<AudioClip> numPlaylist)
+    public void PauseMusic(bool pause)
     {
-        if (playListCort != null)
+        if (pause)
         {
-            StopCoroutine(playListCort);
+            musicSource.Pause();
         }
-        playListCort = StartCoroutine(PlayPlaylist(numPlaylist));
+        else
+        {
+            musicSource.UnPause();
+        }
     }
 
     /* Corrutinas */
@@ -94,17 +90,5 @@ public class AudioManager : MonoBehaviour
         musicSource.clip = clip;
         musicSource.Play();
         FadeInMusic(time);
-    }
-
-    // Reproducción de la lista de música
-    IEnumerator PlayPlaylist(List<AudioClip> playlist)
-    {
-        foreach (AudioClip clip in playlist)
-        {
-            MakeTransition(clip, 0.5f);
-            // Espera real a que termine el clip
-            yield return new WaitWhile(() => musicSource.isPlaying);
-        }
-        StartCoroutine(PlayPlaylist(playlist)); // Bucle
     }
 }

@@ -38,11 +38,6 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    private void Start()
-    {
-        SetGameState(GameState.MainMenu);
-    }
-
     /* Métodos */
     // Estado de partida
     public void SetGameState(GameState state)
@@ -56,6 +51,7 @@ public class GameManager : MonoBehaviour
         switch (state)
         {
             case GameState.MainMenu:
+                Time.timeScale = 1f;
                 uiOnly.Raise();
                 playersAmount = 0;
                 break;

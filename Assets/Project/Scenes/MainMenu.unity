@@ -296,7 +296,7 @@ Transform:
   m_GameObject: {fileID: 1087923489}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.26861, y: 0.92716, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -319,8 +319,9 @@ MonoBehaviour:
   fadeOut: {fileID: 2497662403660539256, guid: 4ec3fde067673f14ca242afd279c44e3, type: 2}
   musicSource: {fileID: 1087923495}
   uiAudioSource: {fileID: 1087923496}
+  mainMenuClip: {fileID: 8300000, guid: 36419c21a2a02524284262e22dda5c23, type: 3}
   countDownClip: {fileID: 8300000, guid: daa4ddc863f18124795ecc894358f5f1, type: 3}
-  backgroundMusic: {fileID: 8300000, guid: 9475accb745147449b133e76e4e761ee, type: 3}
+  backgroundMusic: {fileID: 8300000, guid: 529d5869ca766754599256cd029cd304, type: 3}
   victoryClip: {fileID: 8300000, guid: 1c1d81de772e2114597d50f42bcdeb7c, type: 3}
 --- !u!114 &1087923493
 MonoBehaviour:
@@ -360,8 +361,8 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: -6454371318993424271, guid: 4ec3fde067673f14ca242afd279c44e3, type: 2}
   m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 8300000, guid: 7e54bbc437ef3324e9d307e09cc4531f, type: 3}
-  m_PlayOnAwake: 1
+  m_Resource: {fileID: 8300000, guid: 36419c21a2a02524284262e22dda5c23, type: 3}
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 1
@@ -561,6 +562,7 @@ MonoBehaviour:
   updateGameStateText: {fileID: 11400000, guid: 9e73c13786b45ce4fa207f186ff94598, type: 2}
   gameState: 0
   previousGameState: 0
+  playersAmount: 0
 --- !u!114 &1087923498
 MonoBehaviour:
   m_ObjectHideFlags: 0

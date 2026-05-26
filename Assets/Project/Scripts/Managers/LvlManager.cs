@@ -36,7 +36,6 @@ public class LvlManager : MonoBehaviour
             }
             onPlayersReady.Raise();                                             // Avisa de que los jugadores están listos
             GameManager.Instance.SetGameState(GameManager.GameState.InGame);    // Cambia el estado del juego
-            AudioManager.Instance.PlayClip(AudioManager.Instance.countDownClip);// Reproduce el audio de la cuenta atrás
         }
     }
 
@@ -44,7 +43,6 @@ public class LvlManager : MonoBehaviour
     // Reacciona al comienzo de la partida
     public void StartGame()
     {
-        AudioManager.Instance.MakeTransition(AudioManager.Instance.backgroundMusic, AudioManager.Instance.countDownClip.length);
         gameStarted = true;
     }
 
@@ -52,7 +50,7 @@ public class LvlManager : MonoBehaviour
     // Fin de partida
     public void GameOver()
     {
-        AudioManager.Instance.MakeTransition(AudioManager.Instance.victoryClip, 0);
+        AudioManager.Instance.ChangeMusic(AudioManager.Instance.victoryClip);
     }
 
     /* Método para SO Event PlayerScored */

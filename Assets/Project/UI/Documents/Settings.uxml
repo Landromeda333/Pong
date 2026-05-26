@@ -1,6 +1,6 @@
 <ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/Project/UI/Styles/Settings.uss?fileID=7433441132597879392&amp;guid=43fe4521f2f621540be11d146d82fe24&amp;type=3#Settings"/>
-    <ui:VisualElement name="settings-panel">
+    <ui:VisualElement name="settings-panel" style="display: none;">
         <ui:Label text="Controles" name="controls-title" class="title"/>
         <ui:GroupBox name="controls-group" class="content-group">
             <ui:Label text="Arriba: W&#10;Abajo: S&#10;Saque: D" name="j1-label" class="controls-text"/>
@@ -16,8 +16,8 @@
             </ui:GroupBox>
             <ui:GroupBox name="AudioGroup" style="width: 698px; height: auto; align-items: stretch;">
                 <ui:Label text="Audio" class="section-title"/>
-                <ui:Slider label="Música" value="0.5" high-value="10" name="music-slider" fill="true" class="settings-content"/>
-                <ui:Slider label="SFX" value="2.5" high-value="10" name="sfx-slider" fill="true" class="settings-content"/>
+                <ui:Slider label="Música" value="40" high-value="80" name="music-slider" fill="true" class="settings-content"/>
+                <ui:Slider label="SFX" value="2.5" high-value="80" name="sfx-slider" fill="true" class="settings-content"/>
             </ui:GroupBox>
         </ui:GroupBox>
         <ui:Button text="Volver" name="back-button"/>

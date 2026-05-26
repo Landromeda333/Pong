@@ -14,6 +14,7 @@ public class CountdownBehaviour : MonoBehaviour
 
     private void OnEnable()
     {
+        AudioManager.Instance.ChangeMusic(AudioManager.Instance.countDownClip);// Reproduce el audio de la cuenta atrás
         operando = Time.time + countdownTime;
         _countdownText = GetComponent<UIDocument>().rootVisualElement.Q<Label>("countdown-text");
         _countdownText.text = countdownTime.ToString("0");
@@ -24,6 +25,7 @@ public class CountdownBehaviour : MonoBehaviour
     private void OnDisable()
     {
         _countdownText.style.display = DisplayStyle.None;
+        AudioManager.Instance.ChangeMusic(AudioManager.Instance.backgroundMusic);// Reproduce el audio de la cuenta atrás
     }
 
     private void Update()
