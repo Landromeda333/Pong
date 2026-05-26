@@ -5,9 +5,9 @@
         <ui:Label text="0" name="score-right" class="score-label"/>
     </ui:VisualElement>
     <ui:Label name="gameState-text" text="Preparación" enabled="true" class="game-state"/>
-    <ui:Label name="countdown-text" text="3" enabled="true" class="countdown-label" style="visibility: hidden;"/>
     <ui:VisualElement name="playersState-container">
         <ui:Label text="Esperando..." name="player1-state" class="player-state"/>
+        <ui:Label name="countdown-text" text="3" class="countdown-label"/>
         <ui:Label text="Esperando..." name="player2-state" class="player-state"/>
     </ui:VisualElement>
 </ui:UXML>

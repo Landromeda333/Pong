@@ -1,17 +1,24 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Events/IntGameEvent")]
+//# Este script se encarga de lanzar SO Events Int #//
+[CreateAssetMenu(menuName = "Events/Int Game Event")]
 public class IntGameEvent : ScriptableObject
 {
-    readonly List<IntGameEventListener> listeners = new();
+    /* Int Game Event Listener */
+    readonly List<IntGameEventListener> listeners = new();   // Clases que escuchan el evento
 
+    /* Métodos */
+    // Suscripción al evento
     public void Suscribe(IntGameEventListener listener) => listeners.Add(listener);
+
+    // Desuscripción del evento
     public void Unuscribe(IntGameEventListener listener) => listeners.Remove(listener);
 
+    // Lanzamiento del evento
     public void Raise(int value)
     {
-        var copy = new List<IntGameEventListener>(listeners);
+        var copy = new List<IntGameEventListener>(listeners);// Copia para evitar conflictos durante la modificación de la lista
         foreach (IntGameEventListener listener in copy)
         {
             listener.OnEventRaised(value);

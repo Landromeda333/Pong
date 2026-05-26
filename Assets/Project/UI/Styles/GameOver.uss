@@ -1,0 +1,46 @@
+#gameOver-container
+{
+	display: none;
+	flex-grow: 1;
+}
+
+#gameOver-text
+{
+	overflow: hidden;
+	top: 40%;
+	align-self: center;
+	-unity-font-style: bold;
+	font-size: 60px;
+	color: white;
+	-unity-text-align: middle-center;
+	background-color: black;
+}
+
+#buttons-group
+{
+	position: Absolute;
+	bottom: 20px;
+	justify-content: space-around;
+	align-self: center;
+	width: 297px;
+	height: 357px;
+	background-color: black;
+}
+
+.gameOver-buttons
+{
+	height: 25%;
+	color: white;
+	border-width: 0px;
+	border-radius: 6px;
+}
+
+#restart-button
+{
+	background-color: rgb(30, 130, 255);
+}
+
+#mainMenu-button
+{
+	background-color: rgb(180, 40, 40);
+}

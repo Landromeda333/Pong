@@ -1,14 +1,18 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 
-public class PauseController : MonoBehaviour
+//# Este script se encarga de gestionar la UI del menú de pausa #//
+public class PauseUIController : MonoBehaviour
 {
-    [SerializeField] GameEvent onSettingsRequest;
+    /* SO Events */
+    [SerializeField] GameEvent onSettingsRequest, continueGame; // Solicitud para el menú de ajustes, Continuación de la partida
+    [SerializeField] StringGameEvent loadingSceneRequest;              // Solicitud para la carga de un nivel
 
+    /* Visual Elements */
+    VisualElement _pausePanel;                                  // Panel de pausa
+
+    /* Buttons */
     Button _resumeButton, _settingsButton, _mainMenuButton;
-
-    VisualElement _pausePanel;
 
     private void OnEnable()
     {
@@ -33,36 +37,38 @@ public class PauseController : MonoBehaviour
         _mainMenuButton?.UnregisterCallback<ClickEvent>(BackToMenu);
     }
 
-    /* Métodos */
-
-    public void ShowOrHidePauseMenu()
-    {
-        if (_pausePanel.style.display == DisplayStyle.Flex)
-        {
-            _pausePanel.style.display = DisplayStyle.None;
-            GameManager.Instance.SetGameState(GameManager.Instance.previousGameState);
-        }
-        else
-        {
-            _pausePanel.style.display = DisplayStyle.Flex;
-            GameManager.Instance.SetGameState(GameManager.GameState.Pause);
-        }
-    }
-
+    /* Métodos para la UI */
+    // Sale del menú de pausa
     public void Continue(ClickEvent evt)
     {
        ShowOrHidePauseMenu();
     }
 
+    // Abre el menú de ajustes
     void OnSettingsClicked(ClickEvent evt)
     {
         onSettingsRequest.Raise();
         _pausePanel.style.display = DisplayStyle.None;
     }
 
+    // Vuelve al menú principal
     public void BackToMenu(ClickEvent evt)                                              // Vuelve al menú principal
     {
-        SceneManager.LoadScene("MainMenu");
+        loadingSceneRequest.Raise("MainMenu");
     }
 
+    /* Método para SO OnPauseRequest y OnBackPressed */
+    //Muestra u oculta el menú de pausa
+    public void ShowOrHidePauseMenu()
+    {
+        if (_pausePanel.style.display == DisplayStyle.Flex)
+        {
+            _pausePanel.style.display = DisplayStyle.None;
+            continueGame.Raise();
+        }
+        else
+        {
+            _pausePanel.style.display = DisplayStyle.Flex;
+        }
+    }
 }

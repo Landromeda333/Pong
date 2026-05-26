@@ -11,8 +11,13 @@ GameObject:
   - component: {fileID: 8664037657559444438}
   - component: {fileID: 7188430705934657158}
   - component: {fileID: 98519754922440279}
-  - component: {fileID: 6772863371565671922}
+  - component: {fileID: 8924272307724921577}
   - component: {fileID: 6715334700289011474}
+  - component: {fileID: 4298070408011937084}
+  - component: {fileID: 1372175619065108396}
+  - component: {fileID: 6772863371565671922}
+  - component: {fileID: 2784403825777431785}
+  - component: {fileID: 7075546181296569528}
   m_Layer: 5
   m_Name: HUD
   m_TagString: Untagged
@@ -70,9 +75,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02757c8c95246e649aae9e1d8d24aa95, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HUDController
-  onPauseRequest: {fileID: 11400000, guid: afa27a9f00f17db4a9d633e13b71d2d0, type: 2}
-  countDown: 3.4
---- !u!114 &6772863371565671922
+--- !u!114 &8924272307724921577
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -90,7 +93,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 98519754922440279}
         m_TargetAssemblyTypeName: HUDController, Assembly-CSharp
-        m_MethodName: StartCountdown
+        m_MethodName: StartGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -119,6 +122,116 @@ MonoBehaviour:
       - m_Target: {fileID: 98519754922440279}
         m_TargetAssemblyTypeName: HUDController, Assembly-CSharp
         m_MethodName: UpdatePlayerState
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &4298070408011937084
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4243878436943068639}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df8d6f507627cc44bb9e9fc243049a99, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::StringGameEventListener
+  evt: {fileID: 11400000, guid: 9e73c13786b45ce4fa207f186ff94598, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 98519754922440279}
+        m_TargetAssemblyTypeName: HUDController, Assembly-CSharp
+        m_MethodName: UpdateGameState
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1372175619065108396
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4243878436943068639}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 355deca4ccf354a4c8293f4fa33b4668, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CountdownBehaviour
+  startToPlay: {fileID: 11400000, guid: b41e591d895c2af4482b97fa5c880803, type: 2}
+  countdownTime: 3.4
+--- !u!114 &6772863371565671922
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4243878436943068639}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46898f70dbbb33043a510b5012d52071, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameEventListener
+  evt: {fileID: 11400000, guid: ff830652ca8a4b044895c052d6612636, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1372175619065108396}
+        m_TargetAssemblyTypeName: CountdownBehaviour, Assembly-CSharp
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+--- !u!114 &2784403825777431785
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4243878436943068639}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1427c3e2e48170b47ad313e23f862751, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ScoreController
+--- !u!114 &7075546181296569528
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4243878436943068639}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ff0b7d7486b92d4ab0e96ea74c329d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Int_IntGameEventListener
+  evt: {fileID: 11400000, guid: 39604a96d5320ef4ba55a2b139c82889, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2784403825777431785}
+        m_TargetAssemblyTypeName: ScoreController, Assembly-CSharp
+        m_MethodName: UpdateScore
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

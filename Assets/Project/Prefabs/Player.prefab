@@ -12,10 +12,15 @@ GameObject:
   - component: {fileID: 4484129404728939188}
   - component: {fileID: 6481163614314346153}
   - component: {fileID: 1921249926897980018}
-  - component: {fileID: 1016199585983245356}
   - component: {fileID: 7230886873401895190}
-  - component: {fileID: 8457808472292077914}
-  - component: {fileID: 1472743324229126873}
+  - component: {fileID: 4902700450348824949}
+  - component: {fileID: 5657228988974798688}
+  - component: {fileID: 1016199585983245356}
+  - component: {fileID: 9206924883178813134}
+  - component: {fileID: 1944394797570989295}
+  - component: {fileID: 8345789075914452959}
+  - component: {fileID: 2199647283813350414}
+  - component: {fileID: 3616066229049941820}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -170,22 +175,6 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &1016199585983245356
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2152035975762271497}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fc669345e68fc4e41be6354905caa0b8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Player1Movement
-  direction: 0
-  playerNum: 1
-  kickDir: 0
-  canGoalKick: 0
 --- !u!82 &7230886873401895190
 AudioSource:
   m_ObjectHideFlags: 0
@@ -195,7 +184,7 @@ AudioSource:
   m_GameObject: {fileID: 2152035975762271497}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 7456551607577354797, guid: 4ec3fde067673f14ca242afd279c44e3, type: 2}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: c7cfbe26d8e75814698fe63aa6fecd23, type: 3}
   m_PlayOnAwake: 1
@@ -283,7 +272,151 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &8457808472292077914
+--- !u!114 &4902700450348824949
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2152035975762271497}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: faa67653c2cc65345a9cc8de7821e3fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerBehaviour
+  registerPlayer: {fileID: 11400000, guid: d311e54342fc80245ab9c33b1f89818a, type: 2}
+  playerActivationRequest: {fileID: 11400000, guid: a42e3fa606f07244ba8651be03f2424f, type: 2}
+  playerDeactivationRequest: {fileID: 11400000, guid: f6f313c760ad79949bfa11fb7bd4a73f, type: 2}
+  kick: {fileID: 11400000, guid: 4d19a853325232d488d584b547c1a6d6, type: 2}
+  movement: {fileID: 0}
+  kickDir: 0
+  playerNum: 0
+--- !u!114 &5657228988974798688
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2152035975762271497}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e101b5a3e6413674989f56daff713266, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::IntGameEventListener
+  evt: {fileID: 11400000, guid: ad9d0ec2070198f49b9acd49d220981e, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4902700450348824949}
+        m_TargetAssemblyTypeName: PlayerBehaviour, Assembly-CSharp
+        m_MethodName: Prepare
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1016199585983245356
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2152035975762271497}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc669345e68fc4e41be6354905caa0b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Player1Movement
+  direction: 0
+--- !u!114 &9206924883178813134
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2152035975762271497}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46898f70dbbb33043a510b5012d52071, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameEventListener
+  evt: {fileID: 11400000, guid: afa27a9f00f17db4a9d633e13b71d2d0, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1016199585983245356}
+        m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
+        m_MethodName: StopMovement
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1944394797570989295
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2152035975762271497}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e101b5a3e6413674989f56daff713266, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::IntGameEventListener
+  evt: {fileID: 11400000, guid: 00ed30d63d4764749aa7afa61fbe5d3a, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2199647283813350414}
+        m_TargetAssemblyTypeName: ScaleBehaviour, Assembly-CSharp
+        m_MethodName: CheckPlayerNum
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &8345789075914452959
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2152035975762271497}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e101b5a3e6413674989f56daff713266, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::IntGameEventListener
+  evt: {fileID: 11400000, guid: 5b14f5abf061ffc4f8f209c5ddabb4f3, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3616066229049941820}
+        m_TargetAssemblyTypeName: ScaleBehaviour, Assembly-CSharp
+        m_MethodName: CheckPlayerNum
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+--- !u!114 &2199647283813350414
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -292,11 +425,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 2152035975762271497}
   m_Enabled: 0
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dac6a934e09ea8b408e00e7af4393a55, type: 3}
+  m_Script: {fileID: 11500000, guid: d410c578b37ccb247b8452526fd0ce1d, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ReduceOponentBehaviour
+  m_EditorClassIdentifier: Assembly-CSharp::ScaleBehaviour
+  targetScale: {x: 0.15, y: 0.74}
   effectTime: 10
---- !u!114 &1472743324229126873
+--- !u!114 &3616066229049941820
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -305,7 +439,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 2152035975762271497}
   m_Enabled: 0
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 91e95ea74d5006241acfb7441e33d33b, type: 3}
+  m_Script: {fileID: 11500000, guid: d410c578b37ccb247b8452526fd0ce1d, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::IncreaseSelfBehaviour
+  m_EditorClassIdentifier: Assembly-CSharp::ScaleBehaviour
+  targetScale: {x: 0.15, y: 3}
   effectTime: 10

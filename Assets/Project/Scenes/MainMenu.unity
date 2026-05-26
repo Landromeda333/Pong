@@ -266,13 +266,20 @@ GameObject:
   m_Component:
   - component: {fileID: 1087923490}
   - component: {fileID: 1087923497}
+  - component: {fileID: 1087923506}
+  - component: {fileID: 1087923498}
+  - component: {fileID: 1087923505}
   - component: {fileID: 1087923494}
+  - component: {fileID: 1087923502}
+  - component: {fileID: 1087923499}
+  - component: {fileID: 1087923501}
+  - component: {fileID: 1087923500}
+  - component: {fileID: 1087923503}
   - component: {fileID: 1087923493}
   - component: {fileID: 1087923492}
-  - component: {fileID: 1087923491}
+  - component: {fileID: 1087923504}
   - component: {fileID: 1087923495}
   - component: {fileID: 1087923496}
-  - component: {fileID: 1087923498}
   m_Layer: 0
   m_Name: GameManagement
   m_TagString: Untagged
@@ -295,18 +302,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1087923491
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1087923489}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7737772a823312a43b10b00bfd81bf9f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SettingsManager
 --- !u!114 &1087923492
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -353,7 +348,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
   onPauseRequested: {fileID: 11400000, guid: afa27a9f00f17db4a9d633e13b71d2d0, type: 2}
   onBackPressed: {fileID: 11400000, guid: cf58cc32460cd144eb88827c2fe10560, type: 2}
-  playersMovement: []
+  onPlayerReady: {fileID: 11400000, guid: ba0169cb3bee47a4b8678154fab5e319, type: 2}
 --- !u!82 &1087923495
 AudioSource:
   m_ObjectHideFlags: 0
@@ -560,6 +555,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32a386c937c65d14fafdd9830835348f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
+  uiOnly: {fileID: 11400000, guid: 1c489d42f276bb84ebd8829e6e1dec3d, type: 2}
+  inGameOnly: {fileID: 11400000, guid: 65caf706c58fb3a4b874831a0e5290d1, type: 2}
+  onPreparation: {fileID: 11400000, guid: f5191685b9496a94cb6dc2610bfaa2bc, type: 2}
+  updateGameStateText: {fileID: 11400000, guid: 9e73c13786b45ce4fa207f186ff94598, type: 2}
   gameState: 0
   previousGameState: 0
 --- !u!114 &1087923498
@@ -581,6 +580,226 @@ MonoBehaviour:
       - m_Target: {fileID: 1087923497}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
         m_MethodName: GameOver
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1087923499
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1087923489}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df8d6f507627cc44bb9e9fc243049a99, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::StringGameEventListener
+  evt: {fileID: 11400000, guid: 27b21ab4c19c11e42a344361810536f0, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1087923494}
+        m_TargetAssemblyTypeName: InputsGameManager, Assembly-CSharp
+        m_MethodName: ClearPlayerMovement
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1087923500
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1087923489}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46898f70dbbb33043a510b5012d52071, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameEventListener
+  evt: {fileID: 11400000, guid: 1c489d42f276bb84ebd8829e6e1dec3d, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1087923494}
+        m_TargetAssemblyTypeName: InputsGameManager, Assembly-CSharp
+        m_MethodName: UIOnly
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1087923501
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1087923489}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46898f70dbbb33043a510b5012d52071, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameEventListener
+  evt: {fileID: 11400000, guid: 65caf706c58fb3a4b874831a0e5290d1, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1087923494}
+        m_TargetAssemblyTypeName: InputsGameManager, Assembly-CSharp
+        m_MethodName: InGameOnly
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1087923502
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1087923489}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d5b3632094344940a5bdbec4772f838, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Int_PlayerBehaviourGameEventListener
+  evt: {fileID: 11400000, guid: d311e54342fc80245ab9c33b1f89818a, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1087923494}
+        m_TargetAssemblyTypeName: InputsGameManager, Assembly-CSharp
+        m_MethodName: RegisterPlayer
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1087923503
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1087923489}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df8d6f507627cc44bb9e9fc243049a99, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::StringGameEventListener
+  evt: {fileID: 11400000, guid: 27b21ab4c19c11e42a344361810536f0, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1087923504}
+        m_TargetAssemblyTypeName: LoadManager, Assembly-CSharp
+        m_MethodName: LoadScene
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1087923494}
+        m_TargetAssemblyTypeName: InputsGameManager, Assembly-CSharp
+        m_MethodName: ClearPlayerMovement
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1087923504
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1087923489}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b62be01363da8c4fbc6d990f70346e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LoadManager
+--- !u!114 &1087923505
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1087923489}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46898f70dbbb33043a510b5012d52071, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameEventListener
+  evt: {fileID: 11400000, guid: afa27a9f00f17db4a9d633e13b71d2d0, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1087923497}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: OnPauseRequest
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1087923506
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1087923489}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46898f70dbbb33043a510b5012d52071, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameEventListener
+  evt: {fileID: 11400000, guid: 697b7303111956147be153bcbffbe981, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1087923497}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: ContinueGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -677,10 +896,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 397154469583445046, guid: 26c1fb6d79c704647adcf9395eca5429, type: 3}
-      propertyPath: onBackPressed
-      value: 
-      objectReference: {fileID: 11400000, guid: cf58cc32460cd144eb88827c2fe10560, type: 2}
     - target: {fileID: 1877102101393748084, guid: 26c1fb6d79c704647adcf9395eca5429, type: 3}
       propertyPath: m_LocalPosition.x
       value: -2.01226
@@ -742,6 +957,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: UIMainMenu
       objectReference: {fileID: 0}
+    - target: {fileID: 2720255649160587486, guid: 6108dcab6fa376b4a8e8e91916806e7b, type: 3}
+      propertyPath: loadingSceen
+      value: 
+      objectReference: {fileID: 11400000, guid: 27b21ab4c19c11e42a344361810536f0, type: 2}
+    - target: {fileID: 2720255649160587486, guid: 6108dcab6fa376b4a8e8e91916806e7b, type: 3}
+      propertyPath: loadingSceenRequest
+      value: 
+      objectReference: {fileID: 11400000, guid: 27b21ab4c19c11e42a344361810536f0, type: 2}
     - target: {fileID: 8523463061038161641, guid: 6108dcab6fa376b4a8e8e91916806e7b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 6.42701

@@ -51,7 +51,7 @@ MonoBehaviour:
   m_PanelSettings: {fileID: 11400000, guid: 3932dbb1b565684428b8734e013696ae, type: 2}
   m_ParentUI: {fileID: 0}
   sourceAsset: {fileID: 9197481963319205126, guid: 6bd742307f1178c4aa345f790f2c62ad, type: 3}
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Position: 0
   m_WorldSpaceSizeMode: 1
   m_WorldSpaceWidth: 1920
@@ -72,6 +72,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PauseController
   onSettingsRequest: {fileID: 11400000, guid: 74b190af4dd2e724a8feedbff3a300c3, type: 2}
+  continueGame: {fileID: 11400000, guid: 697b7303111956147be153bcbffbe981, type: 2}
+  loadingSceneRequest: {fileID: 11400000, guid: 27b21ab4c19c11e42a344361810536f0, type: 2}
 --- !u!114 &6975755363903312249
 MonoBehaviour:
   m_ObjectHideFlags: 0

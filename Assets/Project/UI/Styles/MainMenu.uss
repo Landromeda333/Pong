@@ -72,3 +72,13 @@
     top: 0%;
     left: 0%;
 }
+
+#version-text
+{
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+    -unity-font-style: bold;
+    font-size: 20px;
+    color:white
+}

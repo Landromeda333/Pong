@@ -1,9 +1,16 @@
 using UnityEngine;
 
+/* Este script se encarga de gestionar el estado del juego */
 public class GameManager : MonoBehaviour
 {
+    /* SO Events */
+    [SerializeField] GameEvent uiOnly, inGameOnly, onPreparation;// Pide cambio de controles, Avisa de que hay que prepararse
+    [SerializeField] StringGameEvent updateGameStateText;        // Solicitud de cambio en el texto que informa del estado del jugador
+
+    /* Singleton */
     public static GameManager Instance;
 
+    /* Enum */
     public enum GameState
     {
         MainMenu,
@@ -12,8 +19,10 @@ public class GameManager : MonoBehaviour
         Pause,
         GameOver
     }
-    public GameState gameState;
-    [HideInInspector] public GameState previousGameState;
+    public GameState gameState;                                  // Estado actual del juego
+    [HideInInspector] public GameState previousGameState;        // Estado anterior del juego
+
+    public int playersAmount;                                    // Cantidad de jugadores
 
     private void Awake()
     {
@@ -24,7 +33,9 @@ public class GameManager : MonoBehaviour
         else
         {
             Destroy(gameObject);
+            return;
         }
+        DontDestroyOnLoad(gameObject);
     }
 
     private void Start()
@@ -33,53 +44,67 @@ public class GameManager : MonoBehaviour
     }
 
     /* Métodos */
-
     // Estado de partida
     public void SetGameState(GameState state)
     {
+        // Si no es el mismo estado que el actual lo cambia. Controla el bucle por usar previousGameState cambiando hacia el mismo estado
         if (state != gameState)
         {
             previousGameState = gameState;
         }
+
         switch (state)
         {
             case GameState.MainMenu:
-                InputsGameManager.Instance.UIOnly();
+                uiOnly.Raise();
+                playersAmount = 0;
                 break;
 
             case GameState.Preparation:
                 Time.timeScale = 0;
-                foreach (PlayerMovement player in InputsGameManager.Instance.playersMovement)
-                {
-                    player.transform.position = new Vector2(player.transform.position.x, 0);
-                }
-                HUDController.Instance.UpdateGameState("Saque");
-                InputsGameManager.Instance.InGameOnly();
+                onPreparation.Raise();
+                updateGameStateText.Raise("Saque");
+                inGameOnly.Raise();
                 break;
 
             case GameState.InGame:
                 Time.timeScale = 1;
-                HUDController.Instance.UpdateGameState("");
-                InputsGameManager.Instance.InGameOnly();
+                updateGameStateText.Raise("");
+                inGameOnly.Raise();
                 break;
 
             case GameState.Pause:
                 Time.timeScale = 0;
-                InputsGameManager.Instance.UIOnly();
+                uiOnly.Raise();
                 break;
 
             case GameState.GameOver:
                 Time.timeScale = 0;
-                HUDController.Instance.UpdateGameState("Final");
-                InputsGameManager.Instance.UIOnly();
+                updateGameStateText.Raise("Final");
+                uiOnly.Raise();
                 break;
         }
         gameState = state;
     }
 
-    /* Métodos para Game Event Listener */
+    /* Método para SO Event OnGameOver */
+    // Reaciona al fin de partida
     public void GameOver()
     {
         SetGameState(GameState.GameOver);
+    }
+
+    /* Método para SO Event OnPauseRequest */
+    // Reacciona a la pausa
+    public void OnPauseRequest()
+    {
+        SetGameState(GameState.Pause);
+    }
+
+    /* Método para SO Event ContinueGame */
+    // Reacciona a la reanudación de la partida
+    public void ContinueGame()
+    {
+        SetGameState(previousGameState);
     }
 }

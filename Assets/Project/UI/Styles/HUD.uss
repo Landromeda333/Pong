@@ -14,7 +14,7 @@
 #playersState-container
 {
     width: 80%;
-    top: 21.6%;
+    top: 32%;
     align-self: center;
     flex-direction: row;
     justify-content: space-between;
@@ -47,12 +47,12 @@
     -unity-font-style: bold;
     -unity-text-align: middle-center;
 }
+
 .countdown-label
 {
     width: 100px;
     height: 100px;
-    position: Relative;
-    top: 30%;
+    display: none;
     background-color: black;
     align-self: center;
     font-size: 100px;

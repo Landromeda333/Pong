@@ -2,48 +2,45 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+//# Este script se encarga de gestionar los controles de la partida #//
 public class InputsGameManager : MonoBehaviour
 {
-    public static InputsGameManager Instance;
+    /* SO Events */
+    [SerializeField] GameEvent onPauseRequested, onBackPressed; // Solicita el menú de pausa, Pulsación de Esc
+    [SerializeField] IntGameEvent onPlayerReady;                // Avisa de qué jugador está preparado
 
-    [SerializeField] GameEvent onPauseRequested, onBackPressed;
+    PlayerInputActions playerInputs;                            // Inputs
 
-    PlayerInputActions playerInputs;
-
-    [HideInInspector] public List<PlayerMovement> playersMovement;
+    [HideInInspector] public Dictionary<int,PlayerBehaviour> players = new ();  // Diccionario con el número y scripts de los jugadores
 
     private void Awake()
     {
-        if (Instance == null)
-        {
-            Instance = this;
-            playerInputs = new PlayerInputActions();
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
-
-        DontDestroyOnLoad(gameObject);
+        playerInputs = new PlayerInputActions();
     }
 
-    /* Métodos */
-
+    /* Método para SO Event InGameOnly */
+    // Configura los controles en solo el juego
     public void InGameOnly()
     {
         DeactivateUIInput();
-        ActivatePlayerInputs(1);
-        ActivatePlayerInputs(2);
+        for (int i = 1; i <= players.Count; i++)
+        {
+            ActivatePlayerInputs(i);
+        }
     }
 
+    /* Método para SO Event UIOnly */
+    // Configura los controles para solo UI
     public void UIOnly()
     {
-        DeactivatePlayerInputs(1);
-        DeactivatePlayerInputs(1);
+        for (int i = 1; i <= players.Count; i++)
+        {
+            DeactivatePlayerInputs(i);
+        }
         ActivateUIInput();
     }
 
-
+    /* Métodos para evitar fugas de referencias en las suscripciones de los controles */
     /* Player 1 Inputs */
     void OnPlayer1PausePerformed(InputAction.CallbackContext ctx)
     {
@@ -52,41 +49,59 @@ public class InputsGameManager : MonoBehaviour
 
     void OnPlayer1MovePerformed(InputAction.CallbackContext ctx)
     {
-        playersMovement[0].direction = ctx.ReadValue<float>();
+        if (players.TryGetValue(1, out PlayerBehaviour player))
+        {
+            player.movement.direction = ctx.ReadValue<float>();
+        }
     }
 
     void OnPlayer1MoveCanceled(InputAction.CallbackContext ctx)
     {
         if (ctx.ReadValue<float>() == 0)
         {
-            playersMovement[0].direction = 0;
+            if (players.TryGetValue(1, out PlayerBehaviour player))
+            {
+                player.movement.direction = 0;
+            }
         }
     }
 
     void OnPlayer1KickGoalPerformed(InputAction.CallbackContext ctx)
     {
-        LvlManager.Instance.ChangePlayerState(1);
-        playersMovement[0].GoalKick();
+        if (players.TryGetValue(1, out PlayerBehaviour player))
+        {
+            onPlayerReady.Raise(1);
+            player.GoalKick();
+        }
     }
 
     /* Player 2 Inputs */
     void OnPlayer2MovePerformed(InputAction.CallbackContext ctx)
     {
-        playersMovement[1].direction = ctx.ReadValue<float>();
+        if (players.TryGetValue(2, out PlayerBehaviour player))
+        {
+            player.movement.direction = ctx.ReadValue<float>();
+        }
     }
 
     void OnPlayer2MoveCanceled(InputAction.CallbackContext ctx)
     {
         if (ctx.ReadValue<float>() == 0)
         {
-            playersMovement[1].direction = 0;
+            if (players.TryGetValue(2, out PlayerBehaviour player))
+            {
+                player.movement.direction = 0;
+            }
         }
     }
 
     void OnPlayer2KickGoalPerformed(InputAction.CallbackContext ctx)
     {
-        LvlManager.Instance.ChangePlayerState(2);
-        playersMovement[1].GoalKick();
+        if (players.TryGetValue(2, out PlayerBehaviour player))
+        {
+            onPlayerReady.Raise(2);
+            player.GoalKick();
+        }
     }
 
     /* UI Inputs */
@@ -95,6 +110,7 @@ public class InputsGameManager : MonoBehaviour
         onBackPressed.Raise();
     }
 
+    // Activación de los controles de un jugador
     public void ActivatePlayerInputs(int playerNum)
     {
         switch (playerNum)
@@ -122,6 +138,7 @@ public class InputsGameManager : MonoBehaviour
         }
     }
 
+    // Desactivación de los controles de un jugador
     public void DeactivatePlayerInputs(int playerNum)
     {
         switch (playerNum)
@@ -134,7 +151,6 @@ public class InputsGameManager : MonoBehaviour
                 playerInputs.Player1.KickGoal.performed -= OnPlayer1KickGoalPerformed;
 
                 playerInputs.Player1.Pause.performed -= OnPlayer1PausePerformed;
-                playerInputs.Player1.Disable();
                 break;
 
             case 2:
@@ -149,6 +165,7 @@ public class InputsGameManager : MonoBehaviour
         }
     }
 
+    // Activación de los controles de la UI
     void ActivateUIInput()
     {
         playerInputs.UI.Enable();
@@ -156,10 +173,24 @@ public class InputsGameManager : MonoBehaviour
         MouseCursorController.UnlockCursor();
     }
 
+    // Desactivación de los controles de la UI
     void DeactivateUIInput()
     {
         playerInputs.UI.Back.performed -= OnBackPerformed;
         playerInputs.UI.Disable();
         MouseCursorController.LockCursor();
+    }
+
+    /* Métodos para Game Event Listener y String Game Event Listener*/
+    public void ClearPlayerMovement()
+    {
+        players.Clear();
+    }
+
+    /* Métodos para Int-PlayerBehaviour Game Event Listener */
+    public void RegisterPlayer(int playerNum, PlayerBehaviour player)
+    {
+        players.Add(playerNum, player);
+        ActivatePlayerInputs(playerNum);
     }
 }

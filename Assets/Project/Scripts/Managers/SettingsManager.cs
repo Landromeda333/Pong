@@ -1,5 +1,6 @@
 using UnityEngine;
 
+//# Este script se encarga de hacer efectivos los cambios de los ajustes #//
 public class SettingsManager : MonoBehaviour
 {
     /* Singleton */
@@ -14,7 +15,9 @@ public class SettingsManager : MonoBehaviour
         else
         {
             Destroy(this);
+            return;
         }
+        DontDestroyOnLoad(gameObject);
     }
 
     // Seteo de las configuraciones generales

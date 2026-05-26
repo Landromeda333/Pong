@@ -1,6 +1,6 @@
 <ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/Project/UI/Styles/Pause.uss?fileID=7433441132597879392&amp;guid=ff544ff04bddbf44d94f116213c19be4&amp;type=3#Pause"/>
-    <ui:VisualElement name="pause-panel" enabled="true" style="display: none;">
+    <ui:VisualElement name="pause-panel">
         <ui:Label text="Pausa" name="pause-title" class="pause-title"/>
         <ui:Button text="Continuar" name="resume-button" class="resume-button pause-button"/>
         <ui:Button text="Ajustes" name="settings-button" class="settings-button pause-button"/>

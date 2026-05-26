@@ -3,10 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
 
+//# Este script se encarga de gestionar el sistema de Audio #//
 public class AudioManager : MonoBehaviour
 {
+    /* Singleton */
     public static AudioManager Instance;
 
+    /*  Corrutinas */
     Coroutine playListCort;
 
     /* Audio Mixer */
@@ -18,7 +21,7 @@ public class AudioManager : MonoBehaviour
     /* AudioSource */
     [SerializeField] AudioSource musicSource, uiAudioSource;
 
-    public AudioClip countDownClip, backgroundMusic, victoryClip; // Sonido de la cuenta atrás
+    public AudioClip countDownClip, backgroundMusic, victoryClip; // Sonido de la cuenta atrás, Música de fondo y música de fin de partida
 
     private void Awake()
     {

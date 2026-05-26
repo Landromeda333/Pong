@@ -2,40 +2,32 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 
+//# Este script se encarga de gestionar la UI de los ajustes #//
 public class SettingsController : MonoBehaviour
 {
-    public static SettingsController Instance;
+    /* SO Events */
+    [SerializeField] GameEvent onBackPressed;            // El botón back de la UI ha sido pulsado
 
-    [SerializeField] GameEvent onBackPressed;
+    /* Visual Elements */
+    VisualElement _settingsPanel;                        // Panel de ajustes
 
-    DropdownField _fpsLimit, _screenMode;
+    /* DropdownFields */
+    DropdownField _fpsLimit, _screenMode;                // Limitador de FPS, Modo de pantalla
 
-    Slider _musicVolume, _sfxVolume;
+    /* Sliders */
+    Slider _musicVolume, _sfxVolume;                     // Volumen de la música, Volumen de los efectos especiales
 
-    Button _backButton;
+    /* Buttons */
+    Button _backButton;                                  // Botón de volver
 
-    UIDocument doc;
-
-    private void Awake()
-    {
-        if (Instance == null)
-        {
-            Instance = this;
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
-        DontDestroyOnLoad(gameObject);
-
-        doc = GetComponent<UIDocument>();
-        gameObject.SetActive(false);
-        doc.enabled = true;
-    }
+    /* Dictionaries */
+    Dictionary<string, int> _fpsOptions = new() { {"30", 30 }, { "60", 60 }, { "120", 120 }, { "Sin Límite", -1 }}; // Diccionario con las opciones para los límites de FPS
 
     private void OnEnable()
     {
-        var root = doc.rootVisualElement;
+        var root = GetComponent<UIDocument>().rootVisualElement;
+
+        _settingsPanel = root.Q<VisualElement>("settings-panel");
 
         _backButton = root.Q<Button>("back-button");
         _backButton.RegisterCallback<ClickEvent>(OnBackClicked);
@@ -71,57 +63,56 @@ public class SettingsController : MonoBehaviour
     }
 
     /* Métodos */
-
+    // Botón Volver pulsado
     void OnBackClicked(ClickEvent evt)
     {
-        onBackPressed.Raise();
-        gameObject.SetActive(false);
+        onBackPressed.Raise();                           // Avisa
+        _settingsPanel.style.display = DisplayStyle.None;// Oculta el panel
     }
 
-    public void ShowOrHide(ClickEvent evt)
-    {
-        gameObject.SetActive(!gameObject.activeSelf);
-    }
-
+    // FPS Cambiados
     void OnFPSChanged(ChangeEvent<string> evt)
     {
-        switch (evt.newValue)
+        // Si la opción está dentro de lo establecido
+        if (_fpsOptions.TryGetValue(evt.newValue, out int fps))
         {
-            case "30": SettingsManager.Instance.ChangeFPSLimit(30); break;
-
-            case "60": SettingsManager.Instance.ChangeFPSLimit(60); break;
-
-            case "120": SettingsManager.Instance.ChangeFPSLimit(120); break;
-
-            case "Sin límite": SettingsManager.Instance.ChangeFPSLimit(-1); break;
-
-            default: SettingsManager.Instance.ChangeFPSLimit(60); break;
+            SettingsManager.Instance.ChangeFPSLimit(fps);
+        }
+        else
+        {
+            SettingsManager.Instance.ChangeFPSLimit(60); // Valor por defecto
         }
     }
 
+    // Modo de pantalla cambiado
     void OnScreenModeChanged(ChangeEvent<string> evt)
     {
         SettingsManager.Instance.ChangeScreenMode(evt.newValue);
     }
 
+    // Volumen de la música cambiado
     void OnMusicVolumeChanged(ChangeEvent<float> evt)
     {
         SettingsManager.Instance.ChangeMusicVolume(evt.newValue);
     }
 
+    // Volumen de los efectos especiales cambiado
     void OnSFXVolumeChanged(ChangeEvent<float> evt)
     {
         SettingsManager.Instance.ChangeSFXVolume(evt.newValue);
     }
 
-    /* Métodos para Game Event Listener */
+    /* Método para SO Event OnBackPressed */
+    // Ocultar el botón de ajustes
     public void Back()
     {
-        gameObject.SetActive(false);
+        _settingsPanel.style.display = DisplayStyle.None;
     }
 
+    /* Método para SO Event OnSettingsRequest */
+    // Mostrar el panel de ajustes
     public void Show()
     {
-        gameObject.SetActive(true);
+        _settingsPanel.style.display = DisplayStyle.Flex;
     }
 }

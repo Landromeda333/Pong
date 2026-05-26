@@ -1,7 +1,9 @@
 using UnityEngine;
 
+//# Este script se encarga de gestionar la calidad gráfica #//
 public class GraphicsQualityManager : MonoBehaviour
 {
+    /* Singleton */
     public static GraphicsQualityManager Instance;
 
     private void Awake()
@@ -23,7 +25,7 @@ public class GraphicsQualityManager : MonoBehaviour
     }
 
     /* Métodos */
-    // Aplicación de los límite 
+    // Aplicación del límite de FPS
     public void SetFPSLimit(int value)
     {
         if (value != PlayerPrefs.GetInt("FPS"))

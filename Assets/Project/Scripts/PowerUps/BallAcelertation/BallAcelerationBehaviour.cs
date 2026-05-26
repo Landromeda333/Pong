@@ -1,14 +1,16 @@
 using UnityEngine;
 
+//# Este script se encarga de gestionar el comportamiento de la bola al tomar el power up que acelera la bola al jugador contrario #//
 public class BallAcelerationBehaviour : MonoBehaviour
 {
-    BallMovement movement;
+    /* Scripts */
+    BallMovement movement;                           // Script que se encarga del moviento de la bola
 
-    float originalSpeed;
-    [SerializeField] float effecTime;
-    float countdown;
+    [SerializeField] float effecTime;                // Tiempo de efecto del power up
+    float originalSpeed;                             // Velocidad de la bola
+    float countdown;                                 // Guarda el tiempo del juego para hacer la comprobación
 
-    [HideInInspector] public int playerDisadvantaged;
+    [HideInInspector] public int playerAdvantaged;   // Player con la ventaja
 
     private void Awake()
     {
@@ -18,16 +20,18 @@ public class BallAcelerationBehaviour : MonoBehaviour
     private void OnEnable()
     {
         originalSpeed = movement.speed;
+        playerAdvantaged = movement.lastPlayerTouched;
         countdown = Time.time;
     }
 
     private void OnDisable()
     {
-        movement.speed = originalSpeed;                 // Se vuelve a la velocidad normal
+        movement.speed = originalSpeed;
     }
 
     private void Update()
     {
+        // Si ya ha pasado el tiempo correspondiente
         if (Time.time - countdown >= effecTime)
         {
             enabled = false;
@@ -38,26 +42,17 @@ public class BallAcelerationBehaviour : MonoBehaviour
     {
         if (enabled)
         {
-            if (playerDisadvantaged == 1)               // Si se aplica al Jugador1
+            if (collision.gameObject.CompareTag("Player"))
             {
-                if (movement.rb.linearVelocityX > 1)    // Si la ha tocado el Jugador1
+                // Se accede al PlayerBehaviour para tener una fuente fiable. Porque el lastPlayerTouched puede que no se actualice a tiempo y de lugar a un mal funcionamiento
+                if (playerAdvantaged != collision.gameObject.GetComponent<PlayerBehaviour>().playerNum)
                 {
-                    movement.rb.linearVelocityX /= 2;   // Se aumenta la velocidad de la bola
+                    movement.rb.linearVelocityX /= 2;
                 }
-                else                                    // Si la ha tocado al Jugador 2
+                // Acción para el jugador perjudicado
+                else
                 {
-                    movement.rb.linearVelocityX *= 2;   // Se reduce la velocidad de la bola
-                }
-            }
-            else                                        // Si se aplica al Jugador2
-            {
-                if (movement.rb.linearVelocityX > 1)    // Si la ha tocado el Jugador1
-                {
-                    movement.rb.linearVelocityX *= 2;   // Se aumenta la velocidad de la bola
-                }
-                else                                    // Si la ha tocado al Jugador 2
-                {
-                    movement.rb.linearVelocityX /= 2;   // Se reduce la velocidad de la bola
+                    movement.rb.linearVelocityX = Mathf.Clamp(movement.rb.linearVelocityX*= 2, -movement.maxSpeed, movement.maxSpeed);
                 }
             }
         }

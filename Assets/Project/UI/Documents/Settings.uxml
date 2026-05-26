@@ -1,24 +1,25 @@
 <ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <ui:VisualElement name="settings-panel" style="flex-grow: 1; background-color: rgb(0, 0, 0); width: 100%; height: 100%; position: absolute; flex-wrap: nowrap; flex-direction: column; align-content: auto; align-items: center; justify-content: space-around; white-space: normal; -unity-text-align: upper-left; overflow: hidden; display: flex;">
-        <ui:Label text="Controles" name="controls-title" style="width: 1914px; -unity-text-align: middle-center; font-size: 60px; -unity-text-outline-color: rgb(0, 0, 0); color: rgb(255, 255, 255); -unity-font-style: bold;"/>
-        <ui:GroupBox name="controls-group" style="width: 1913px; flex-direction: row; align-items: flex-start; justify-content: space-between;">
-            <ui:Label text="Arriba: W&#10;Abajo: S&#10;Saque: D" name="j1-label" style="left: 8%; top: auto; right: auto; bottom: auto; color: rgb(255, 255, 255); -unity-font-style: bold; font-size: 30px;"/>
-            <ui:Label text="Pausa: Esc" name="common-label" style="height: auto; top: 5%; -unity-font-style: bold; color: rgb(255, 255, 255); font-size: 30px;"/>
-            <ui:Label text="Arriba: W&#10;Abajo: S&#10;Saque: D" name="j2-label" style="right: 8%; top: 5%; -unity-font-style: bold; color: rgb(255, 255, 255); font-size: 30px;"/>
+    <Style src="project://database/Assets/Project/UI/Styles/Settings.uss?fileID=7433441132597879392&amp;guid=43fe4521f2f621540be11d146d82fe24&amp;type=3#Settings"/>
+    <ui:VisualElement name="settings-panel">
+        <ui:Label text="Controles" name="controls-title" class="title"/>
+        <ui:GroupBox name="controls-group" class="content-group">
+            <ui:Label text="Arriba: W&#10;Abajo: S&#10;Saque: D" name="j1-label" class="controls-text"/>
+            <ui:Label text="Pausa: Esc" name="common-label" class="controls-text"/>
+            <ui:Label text="Arriba: W&#10;Abajo: S&#10;Saque: D" name="j2-label" class="controls-text"/>
         </ui:GroupBox>
-        <ui:Label text="Ajustes" name="controls-title" style="width: 1914px; -unity-text-align: middle-center; font-size: 60px; -unity-text-outline-color: rgb(0, 0, 0); color: rgb(255, 255, 255); -unity-font-style: bold;"/>
-        <ui:GroupBox style="height: auto; width: 100%; align-items: center; justify-content: space-around; flex-direction: row;">
+        <ui:Label text="Ajustes" name="settings-title" class="title"/>
+        <ui:GroupBox class="content-group">
             <ui:GroupBox name="GraphicQualityGroup" style="width: 30%; height: auto;">
-                <ui:Label text="Gráficos" style="-unity-text-align: upper-center; color: rgb(255, 255, 255); -unity-font-style: bold;"/>
-                <ui:DropdownField label="FPS" name="fps-limit" choices="30,60,120,Sin Límites" index="0" style="color: rgb(255, 255, 255);"/>
-                <ui:DropdownField label="Ventana" name="screen-mode" index="0" choices="Pantalla Completa,Ventana Completa,Modo ventana" style="color: rgb(255, 255, 255);"/>
+                <ui:Label text="Gráficos" class="section-title"/>
+                <ui:DropdownField label="FPS" name="fps-limit" choices="30,60,120,Sin Límites" index="0" class="settings-content"/>
+                <ui:DropdownField label="Ventana" name="screen-mode" index="0" choices="Pantalla Completa,Ventana Completa,Modo ventana" class="settings-content"/>
             </ui:GroupBox>
             <ui:GroupBox name="AudioGroup" style="width: 698px; height: auto; align-items: stretch;">
-                <ui:Label text="Audio" style="-unity-text-align: upper-center; color: rgb(255, 255, 255); -unity-font-style: bold;"/>
-                <ui:Slider label="Música" value="0.5" high-value="10" name="music-slider" fill="true" style="color: rgb(255, 255, 255);"/>
-                <ui:Slider label="SFX" value="2.5" high-value="10" name="sfx-slider" fill="true" style="color: rgb(255, 255, 255);"/>
+                <ui:Label text="Audio" class="section-title"/>
+                <ui:Slider label="Música" value="0.5" high-value="10" name="music-slider" fill="true" class="settings-content"/>
+                <ui:Slider label="SFX" value="2.5" high-value="10" name="sfx-slider" fill="true" class="settings-content"/>
             </ui:GroupBox>
         </ui:GroupBox>
-        <ui:Button text="Volver" name="back-button" style="width: 10%; background-color: rgb(180, 40, 40); color: rgb(255, 255, 255);"/>
+        <ui:Button text="Volver" name="back-button"/>
     </ui:VisualElement>
 </ui:UXML>

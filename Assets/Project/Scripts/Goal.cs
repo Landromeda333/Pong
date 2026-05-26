@@ -1,24 +1,37 @@
 using UnityEngine;
 
+/* Este script se encarga del comportamiento de las porterías*/
 public class Goal : MonoBehaviour
 {
-    AudioSource audSource;
+    /* SO Events */
+    [SerializeField] Int_IntGameEvent playerScored; // Avisa que el jugador contrario ha marcado
 
-    [SerializeField] int playerGoal;
+    /* AudioSource */
+    AudioSource source;
+
+    [SerializeField] int playerGoal;                // Guarda de qué jugador es la portería
+    int score;                                      // Puntuación del jugador
 
     private void Awake()
     {
-        audSource = GetComponent<AudioSource>();
+        source = GetComponent<AudioSource>();
     }
 
-    /* Cuando la bola entre en la portería */
+    /* Cuando la bola entra en la portería */
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Ball"))
         {
-            other.gameObject.SetActive(false);
-            LvlManager.Instance.UpdateScore(playerGoal);
-            audSource.Play();                               // Reproducción explosión
+            other.gameObject.SetActive(false);      // Desactiva la bola
+            UpdateScore();                          // Actualiza los puntos
+            source.Play();
         }
+    }
+
+    // Actualización de puntuación
+    public void UpdateScore()
+    {
+        score++;
+        playerScored.Raise(playerGoal, score);
     }
 }

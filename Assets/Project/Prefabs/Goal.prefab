@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5002819487955278340}
-  - component: {fileID: 3092123014640115332}
   - component: {fileID: 7531663881493812875}
   - component: {fileID: 4982482968971152270}
   - component: {fileID: 4437248280544974037}
@@ -18,7 +17,7 @@ GameObject:
   m_TagString: Finish
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &5002819487955278340
 Transform:
@@ -35,33 +34,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!50 &3092123014640115332
-Rigidbody2D:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5414168779581350701}
-  m_BodyType: 1
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDamping: 0
-  m_AngularDamping: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 1
-  m_Constraints: 0
 --- !u!61 &7531663881493812875
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -120,9 +92,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e95d44b0817b2c4e96f26b99b97199a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pointsPlayer2: 0
-  pointForPlayer2: 0
-  goalPlayer2: {fileID: 0}
+  playerScored: {fileID: 11400000, guid: 39604a96d5320ef4ba55a2b139c82889, type: 2}
+  playerGoal: 0
 --- !u!82 &4437248280544974037
 AudioSource:
   m_ObjectHideFlags: 0
@@ -130,12 +101,12 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5414168779581350701}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 7456551607577354797, guid: 4ec3fde067673f14ca242afd279c44e3, type: 2}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: 58dfe3ce22d78ea4bbfb23630f621010, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0

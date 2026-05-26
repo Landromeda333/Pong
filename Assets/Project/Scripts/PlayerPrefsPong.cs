@@ -1,5 +1,6 @@
 using UnityEngine;
 
+/* Este script se encarga de gestionar los PlayerPrefs */
 public class PlayerPrefsPong : MonoBehaviour
 {
     private void Awake()
