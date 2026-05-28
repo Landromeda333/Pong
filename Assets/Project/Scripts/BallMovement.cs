@@ -1,7 +1,7 @@
 using UnityEngine;
 
 /* Este script se encarga de gestionar el movimiento de la bola */
-public class BallMovement : MonoBehaviour
+public class BallMovement : MonoBehaviour, IResettable
 {
     /* Audio Source */
     AudioSource source;
@@ -22,9 +22,15 @@ public class BallMovement : MonoBehaviour
         source = GetComponent<AudioSource>();
     }
 
+    private void OnEnable()
+    {
+        GameManager.Instance.RegisterResettable(this);
+    }
+
     // Reseteo de valores
     private void OnDisable()
     {
+        GameManager.Instance.UnregisterResettable(this);
         rb.linearVelocity = Vector2.zero;
         lastPlayerTouched = 0;
     }
@@ -62,8 +68,8 @@ public class BallMovement : MonoBehaviour
         rb.AddForce(new Vector2(-4f, Random.Range(-5f, 5f)), ForceMode2D.Impulse);
     }
 
-    /* Método para SO Event OnGameOver */
-    // Reacción al fin de partida
+    /* Método para IResettable */
+    // Reacción al Game Over
     public void OnGameOver()
     {
         gameObject.SetActive(false);

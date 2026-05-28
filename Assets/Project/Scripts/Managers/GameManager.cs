@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 /* Este script se encarga de gestionar el estado del juego */
@@ -6,6 +7,9 @@ public class GameManager : MonoBehaviour
     /* SO Events */
     [SerializeField] GameEvent uiOnly, inGameOnly, onPreparation;// Pide cambio de controles, Avisa de que hay que prepararse
     [SerializeField] StringGameEvent updateGameStateText;        // Solicitud de cambio en el texto que informa del estado del jugador
+
+    /* Interfaces */
+    readonly List<IResettable> resettables = new();
 
     /* Singleton */
     public static GameManager Instance;
@@ -39,6 +43,10 @@ public class GameManager : MonoBehaviour
     }
 
     /* Métodos */
+    public void RegisterResettable(IResettable resettable) => resettables.Add(resettable);
+
+    public void UnregisterResettable(IResettable resettable) => resettables.Remove(resettable);
+
     // Estado de partida
     public void SetGameState(GameState state)
     {
@@ -87,6 +95,11 @@ public class GameManager : MonoBehaviour
     // Reaciona al fin de partida
     public void GameOver()
     {
+        var copy = new List<IResettable>(resettables);
+        foreach (IResettable resettable in copy)
+        {
+            resettable.OnGameOver();
+        }
         SetGameState(GameState.GameOver);
     }
 

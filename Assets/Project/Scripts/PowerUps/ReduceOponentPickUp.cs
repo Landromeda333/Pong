@@ -1,10 +1,20 @@
 using UnityEngine;
 
 //# Este script se encarga del power up recogible que reduce el tamaño del oponente #//
-public class ReduceOponent : MonoBehaviour
+public class ReduceOponent : MonoBehaviour, IResettable
 {
     /* Int Game Event */
-    [SerializeField] IntGameEvent reduceSize;// Avisa que jugador debe reducir su tamaño
+    [SerializeField] IntGameEvent reduceSize;                                                   // Avisa que jugador debe reducir su tamaño
+
+    private void OnEnable()
+    {
+        GameManager.Instance.RegisterResettable(this);
+    }
+
+    private void OnDisable()
+    {
+        GameManager.Instance.UnregisterResettable(this);
+    }
 
     /* Cuando la bola colisione al Power Up */
     private void OnTriggerEnter2D(Collider2D collision)
@@ -13,8 +23,8 @@ public class ReduceOponent : MonoBehaviour
         gameObject.SetActive(false);                                                            //Cuando se active el PowerUP se quita
     }
 
-    /* Métodos */
-    // Reacción al SO Event OnGameOver
+    /* Método para IResettable */
+    // Reacción al Game Over
     public void OnGameOver()
     {
         gameObject.SetActive(false);

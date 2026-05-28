@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 7021438721469771132}
   - component: {fileID: 2955143377798867559}
   - component: {fileID: 8224225795845441442}
-  - component: {fileID: 3053741877573838781}
   m_Layer: 0
   m_Name: IncreaseSelf
   m_TagString: PowerUp
@@ -153,31 +152,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   increaseSelf: {fileID: 11400000, guid: 5b14f5abf061ffc4f8f209c5ddabb4f3, type: 2}
---- !u!114 &3053741877573838781
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5028394227248112991}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e101b5a3e6413674989f56daff713266, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::IntGameEventListener
-  evt: {fileID: 11400000, guid: c1a8a7de9b900844c939bd4dc2c85e9a, type: 2}
-  response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 8224225795845441442}
-        m_TargetAssemblyTypeName: IncreaseSelf, Assembly-CSharp
-        m_MethodName: OnGameOver
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2

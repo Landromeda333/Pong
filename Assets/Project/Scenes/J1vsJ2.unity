@@ -1323,6 +1323,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: LvlManager
       objectReference: {fileID: 0}
+    - target: {fileID: 7129838300374183321, guid: 056468ad19fe53d42adbfc4ceb47a06a, type: 3}
+      propertyPath: goalsTarget
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

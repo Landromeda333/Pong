@@ -1,8 +1,18 @@
 using UnityEngine;
 
 //# Este script se encarga del comportamiento del power up que acelera la bola #//
-public class BallAcelerationPickUp : MonoBehaviour
+public class BallAcelerationPickUp : MonoBehaviour, IResettable
 {
+    private void OnEnable()
+    {
+        GameManager.Instance.RegisterResettable(this);
+    }
+
+    private void OnDisable()
+    {
+        GameManager.Instance.UnregisterResettable(this);
+    }
+
     /* Cuando la bola colisione al Power Up */
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -10,8 +20,7 @@ public class BallAcelerationPickUp : MonoBehaviour
         gameObject.SetActive(false);                                  //Cuando se active el PowerUP se quita
     }
 
-    /* Métodos */
-    // Reacción al SO Event OnGameOver
+    /* Métodos para IResettable*/
     public void OnGameOver()
     {
         gameObject.SetActive(false);
