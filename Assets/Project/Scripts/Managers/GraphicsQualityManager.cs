@@ -20,17 +20,17 @@ public class GraphicsQualityManager : MonoBehaviour
 
     private void Start()
     {
-        SetFPSLimit(PlayerPrefs.GetInt("FPS"));
-        SetScreenMode(PlayerPrefs.GetString("ScreenMode"));
+        SetFPSLimit(SettingsManager.Instance.data.fps);
+        SetScreenMode(SettingsManager.Instance.data.screenMode);
     }
 
     /* Métodos */
     // Aplicación del límite de FPS
     public void SetFPSLimit(int value)
     {
-        if (value != PlayerPrefs.GetInt("FPS"))
+        if (value != SettingsManager.Instance.data.fps)
         {
-            PlayerPrefs.SetInt("FPS", value);
+            SettingsManager.Instance.data.fps = value;
         }
         Application.targetFrameRate = value;
     }
@@ -38,9 +38,9 @@ public class GraphicsQualityManager : MonoBehaviour
     // Aplicación del nuevo modo de la pantalla
     public void SetScreenMode(string value)
     {
-        if (value != PlayerPrefs.GetString("ScreenMode"))
+        if (value != SettingsManager.Instance.data.screenMode)
         {
-            PlayerPrefs.SetString("ScreenMode", value);
+            SettingsManager.Instance.data.screenMode = value;
         }
 
         switch (value)

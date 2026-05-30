@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1877102101393748084}
   - component: {fileID: 7771459181999101734}
-  - component: {fileID: 397154469583445046}
   - component: {fileID: 3128986598670940512}
+  - component: {fileID: 397154469583445046}
   - component: {fileID: 6646038685989753559}
   - component: {fileID: 232509300690334986}
   m_Layer: 0
@@ -59,6 +59,18 @@ MonoBehaviour:
   m_PivotReferenceSize: 0
   m_Pivot: 0
   m_WorldSpaceCollider: {fileID: 0}
+--- !u!114 &3128986598670940512
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3622080571841139882}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7737772a823312a43b10b00bfd81bf9f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SettingsManager
 --- !u!114 &397154469583445046
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -72,18 +84,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SettingsController
   onBackPressed: {fileID: 11400000, guid: cf58cc32460cd144eb88827c2fe10560, type: 2}
---- !u!114 &3128986598670940512
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3622080571841139882}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7737772a823312a43b10b00bfd81bf9f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SettingsManager
 --- !u!114 &6646038685989753559
 MonoBehaviour:
   m_ObjectHideFlags: 0

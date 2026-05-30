@@ -34,20 +34,20 @@ public class SettingsUIController : MonoBehaviour
 
         _fpsLimit = root.Q<DropdownField>("fps-limit");
         _fpsLimit.choices = new List<string> { "30", "60", "120", "Sin Límite" };
-        _fpsLimit.value = PlayerPrefs.GetInt("FPS",60).ToString("0");
+        _fpsLimit.value = SettingsManager.Instance.data.fps.ToString("0");
         _fpsLimit.RegisterValueChangedCallback(OnFPSChanged);
 
         _screenMode = root.Q<DropdownField>("screen-mode");
         _screenMode.choices = new List<string> { "Pantalla completa", "Ventana", "Sin bordes" };
-        _screenMode.value = PlayerPrefs.GetString("ScreenMode", "Pantalla completa");
+        _screenMode.value = SettingsManager.Instance.data.screenMode;
         _screenMode.RegisterValueChangedCallback(OnScreenModeChanged);
 
         _musicVolume = root.Q<Slider>("music-slider");
-        _musicVolume.value = PlayerPrefs.GetFloat("MusicVolume", 80);
+        _musicVolume.value = SettingsManager.Instance.data.musicVolume;
         _musicVolume.RegisterValueChangedCallback(OnMusicVolumeChanged);
 
         _sfxVolume = root.Q<Slider>("sfx-slider");
-        _sfxVolume.value = PlayerPrefs.GetFloat("SFXVolume", 80);
+        _sfxVolume.value = SettingsManager.Instance.data.sfxVolume;
         _sfxVolume.RegisterValueChangedCallback(OnSFXVolumeChanged);
     }
 

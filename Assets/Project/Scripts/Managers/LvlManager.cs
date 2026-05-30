@@ -20,6 +20,13 @@ public class LvlManager : MonoBehaviour
         GameManager.Instance.SetGameState(GameManager.GameState.Preparation);   // Cambia el estado de juego
     }
 
+    /* Métodos */
+    // Fin de partida
+    public void GameOver()
+    {
+        AudioManager.Instance.ChangeMusic(AudioManager.Instance.victoryClip);
+    }
+
     /* Método para SO Event OnPlayerReady */
     // Cambiar estado de los jugadores
     public void ChangePlayerState(int playerNum)
@@ -46,13 +53,6 @@ public class LvlManager : MonoBehaviour
         gameStarted = true;
     }
 
-    /* Método para SO Event OnGameOver */
-    // Fin de partida
-    public void GameOver()
-    {
-        AudioManager.Instance.ChangeMusic(AudioManager.Instance.victoryClip);
-    }
-
     /* Método para SO Event PlayerScored */
     // Comprueba que si ha llegado al final o no
     public void CheckScore(int playerNum, int score)
@@ -61,6 +61,7 @@ public class LvlManager : MonoBehaviour
         if (score >= goalsTarget)
         {
             onGameOver.Raise(playerNum);
+            GameOver();
         }
         // Si ya no hay pelotas activas (para el caso en el que se haya activado el power up de las bolas múltiples)
         else if (!BallsPool.Instance.CheckActiveBalls())
