@@ -19,7 +19,10 @@ public class IncreaseSelfPickUp : MonoBehaviour, IResettable
     /* Cuando la bola colisione al Power Up */
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        increaseSelf.Raise(collision.gameObject.GetComponent<BallMovement>().lastPlayerTouched);
+        if (collision.gameObject.TryGetComponent<BallMovement>(out BallMovement ball))
+        {
+            increaseSelf.Raise(ball.lastPlayerTouched);
+        }
         gameObject.SetActive(false);
     }
 

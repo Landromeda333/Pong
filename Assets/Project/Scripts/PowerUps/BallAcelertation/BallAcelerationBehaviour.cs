@@ -42,10 +42,10 @@ public class BallAcelerationBehaviour : MonoBehaviour
     {
         if (enabled)
         {
-            if (collision.gameObject.CompareTag("Player"))
+            if (collision.gameObject.CompareTag("Player") && collision.gameObject.TryGetComponent<PlayerData>(out PlayerData player))
             {
                 // Se accede al PlayerBehaviour para tener una fuente fiable. Porque el lastPlayerTouched puede que no se actualice a tiempo y de lugar a un mal funcionamiento
-                if (playerAdvantaged != collision.gameObject.GetComponent<PlayerBehaviour>().playerNum)
+                if (playerAdvantaged != player.playerNum)
                 {
                     movement.rb.linearVelocityX /= 2;
                 }

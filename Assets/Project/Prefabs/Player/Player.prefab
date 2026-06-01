@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 6481163614314346153}
   - component: {fileID: 1921249926897980018}
   - component: {fileID: 7230886873401895190}
+  - component: {fileID: 2073236631820739304}
   - component: {fileID: 4902700450348824949}
-  - component: {fileID: 5657228988974798688}
   - component: {fileID: 1016199585983245356}
   - component: {fileID: 9206924883178813134}
   - component: {fileID: 1944394797570989295}
@@ -272,6 +272,20 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &2073236631820739304
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2152035975762271497}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30ef34df974dfc948b5e6ef6393a159a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerData
+  playerNum: 0
+  kickDir: 0
 --- !u!114 &4902700450348824949
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -289,36 +303,6 @@ MonoBehaviour:
   playerDeactivationRequest: {fileID: 11400000, guid: f6f313c760ad79949bfa11fb7bd4a73f, type: 2}
   kick: {fileID: 11400000, guid: 4d19a853325232d488d584b547c1a6d6, type: 2}
   movement: {fileID: 0}
-  kickDir: 0
-  playerNum: 0
---- !u!114 &5657228988974798688
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2152035975762271497}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e101b5a3e6413674989f56daff713266, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::IntGameEventListener
-  evt: {fileID: 11400000, guid: ad9d0ec2070198f49b9acd49d220981e, type: 2}
-  response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 4902700450348824949}
-        m_TargetAssemblyTypeName: PlayerBehaviour, Assembly-CSharp
-        m_MethodName: Prepare
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &1016199585983245356
 MonoBehaviour:
   m_ObjectHideFlags: 0

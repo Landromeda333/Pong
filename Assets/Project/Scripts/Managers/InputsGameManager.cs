@@ -191,6 +191,5 @@ public class InputsGameManager : MonoBehaviour
     public void RegisterPlayer(int playerNum, PlayerBehaviour player)
     {
         players.Add(playerNum, player);
-        ActivatePlayerInputs(playerNum);
     }
 }

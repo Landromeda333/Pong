@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour
 
     /* Interfaces */
     readonly List<IResettable> resettables = new();
-
+    readonly List<IPreparable> preparables = new();
     /* Singleton */
     public static GameManager Instance;
 
@@ -46,6 +46,10 @@ public class GameManager : MonoBehaviour
     public void RegisterResettable(IResettable resettable) => resettables.Add(resettable);
 
     public void UnregisterResettable(IResettable resettable) => resettables.Remove(resettable);
+
+    public void RegisterPreparable(IPreparable preparable) => preparables.Add(preparable);
+
+    public void UnregisterPreparable(IPreparable preparable) => preparables.Remove(preparable);
 
     // Estado de partida
     public void SetGameState(GameState state)
@@ -101,6 +105,16 @@ public class GameManager : MonoBehaviour
             resettable.OnGameOver();
         }
         SetGameState(GameState.GameOver);
+    }
+
+    public void Prepare(int playerNum)
+    {
+        var copy = new List<IPreparable>(preparables);
+        foreach (IPreparable preparable in copy)
+        {
+            preparable.OnPreparation(playerNum);
+        }
+        SetGameState(GameState.Preparation);
     }
 
     /* Método para SO Event OnPauseRequest */

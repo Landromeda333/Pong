@@ -42,7 +42,6 @@ public class GameOverUIController : MonoBehaviour
     // Empieza de nuevo el nivel
     void Restart(ClickEvent evt)
     {
-
         loadSceneRequest.Raise(SceneManager.GetActiveScene().name);
     }
 

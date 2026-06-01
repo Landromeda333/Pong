@@ -19,7 +19,10 @@ public class ReduceOponent : MonoBehaviour, IResettable
     /* Cuando la bola colisione al Power Up */
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        reduceSize.Raise(collision.gameObject.GetComponent<BallMovement>().lastPlayerTouched);  // Averigua quien es el jugador que ha golpeado el PowerUp
+        if (collision.gameObject.TryGetComponent<BallMovement>(out BallMovement ball))
+        {
+            reduceSize.Raise(ball.lastPlayerTouched);  // Averigua quien es el jugador que ha golpeado el PowerUp
+        }
         gameObject.SetActive(false);                                                            //Cuando se active el PowerUP se quita
     }
 

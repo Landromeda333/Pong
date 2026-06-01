@@ -3,7 +3,7 @@ using UnityEngine;
 /* Este script se encarga de gestionar los efectos de los power ups que cambian la escala de los jugadores */
 public class ScaleBehaviour : MonoBehaviour
 {
-    PlayerBehaviour playerBehaviour;             // Clase que se encarga del comportamiento del jugador
+    PlayerData data;             // Clase que se encarga del comportamiento del jugador
 
     public Vector2 targetScale;                  // Escala a la que cambia el jugador
     Vector2 originalScale;                       // Escala original del jugador
@@ -13,7 +13,7 @@ public class ScaleBehaviour : MonoBehaviour
 
     private void Awake()
     {
-        playerBehaviour = GetComponent<PlayerBehaviour>();
+        data = GetComponent<PlayerData>();
         originalScale = transform.localScale;
     }
 
@@ -45,7 +45,7 @@ public class ScaleBehaviour : MonoBehaviour
     public void CheckPlayerNum(int num)
     {
         // Si el jugador que debe reducirse es este
-        if (num == playerBehaviour.playerNum)
+        if (num == data.playerNum)
         {
             if (!enabled)
             {

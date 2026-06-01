@@ -1,7 +1,7 @@
 using UnityEngine;
 
 /* Este script se encarga de gestionar el movimiento de la bola */
-public class BallMovement : MonoBehaviour, IResettable
+public class BallMovement : MonoBehaviour, IResettable, IPreparable
 {
     /* Audio Source */
     AudioSource source;
@@ -25,12 +25,14 @@ public class BallMovement : MonoBehaviour, IResettable
     private void OnEnable()
     {
         GameManager.Instance.RegisterResettable(this);
+        GameManager.Instance.RegisterPreparable(this);
     }
 
     // Reseteo de valores
     private void OnDisable()
     {
         GameManager.Instance.UnregisterResettable(this);
+        GameManager.Instance.UnregisterPreparable(this);
         rb.linearVelocity = Vector2.zero;
         lastPlayerTouched = 0;
     }
@@ -39,7 +41,10 @@ public class BallMovement : MonoBehaviour, IResettable
     {
         if (collision.gameObject.CompareTag("Player"))                                           // Si choca contra un jugador
         {
-            SetLastPlayerTouched(collision.gameObject.GetComponent<PlayerBehaviour>().playerNum);// Guarda el jugador
+            if (collision.gameObject.TryGetComponent<PlayerData>(out PlayerData player))
+            {
+                SetLastPlayerTouched(player.playerNum);// Guarda el jugador
+            }
 
             // Dependiendo de donde golpee añade velocidad hacia un lado u otro
             if (transform.position.x < 0)
@@ -52,6 +57,8 @@ public class BallMovement : MonoBehaviour, IResettable
             }
             source.PlayOneShot(collisionSound);
         }
+        rb.linearVelocityX = Mathf.Clamp(rb.linearVelocityX, -maxSpeed, maxSpeed);
+        rb.linearVelocityY = Mathf.Clamp(rb.linearVelocityY, -maxSpeed, maxSpeed);
     }
 
     /* Métodos para SO Event GoalKick */
@@ -75,9 +82,15 @@ public class BallMovement : MonoBehaviour, IResettable
         gameObject.SetActive(false);
     }
 
-    /* Métodos para SO Event CanGoalKick */
+    /* Método para IPreparable */
+    public void OnPreparation(int num)
+    {
+        SetLastPlayerTouched(num);
+    }
+
+    /* Métodos */
     // Guardado del último jugador tocado
-    public void SetLastPlayerTouched(int playerNumber)
+    void SetLastPlayerTouched(int playerNumber)
     {
         lastPlayerTouched = playerNumber;
     }

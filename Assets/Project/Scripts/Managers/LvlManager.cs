@@ -5,7 +5,7 @@ public class LvlManager : MonoBehaviour
 {
     /* SO Events */
     [SerializeField] GameEvent onPlayersReady;                                  // Avisa de que todos los jugadores están preparados
-    [SerializeField] IntGameEvent canGoalKick, onGameOver;                      // Avisa quien saca, Avisa del fin de partida
+    [SerializeField] IntGameEvent onGameOver;                                   // Avisa quien saca, Avisa del fin de partida
     [SerializeField] StringGameEvent loadSceneRequest;                          // Solicitud de carga de nivel
 
     [SerializeField] int goalsTarget = 10;                                      // Límite de goles
@@ -15,9 +15,9 @@ public class LvlManager : MonoBehaviour
 
     private void Start()
     {
-        playerStateReady = new bool[GameManager.Instance.playersAmount];                             // Crea un array con el tamaño correspondiente a la cantidad de jugadores
+        playerStateReady = new bool[GameManager.Instance.playersAmount];        // Crea un array con el tamaño correspondiente a la cantidad de jugadores
         BallsPool.Instance.GetPooledObject().transform.position = Vector3.zero; // Pone la bola en el centro
-        GameManager.Instance.SetGameState(GameManager.GameState.Preparation);   // Cambia el estado de juego
+        GameManager.Instance.Prepare(0);   // Cambia el estado de juego
     }
 
     /* Métodos */
@@ -28,12 +28,15 @@ public class LvlManager : MonoBehaviour
     }
 
     /* Método para SO Event OnPlayerReady */
-    // Cambiar estado de los jugadores
+    // Cambiar estado de los jugadores al inicio de la partida
     public void ChangePlayerState(int playerNum)
     {
         if (GameManager.Instance.gameState == GameManager.GameState.Preparation && !gameStarted)
         {
-            playerStateReady[playerNum - 1] = true;
+            if (playerNum - 1 < playerStateReady.Length)
+            {
+                playerStateReady[playerNum - 1] = true;
+            }
             for (int i = 0; i < playerStateReady.Length; i++)
             {
                 if (!playerStateReady[i])
@@ -66,7 +69,7 @@ public class LvlManager : MonoBehaviour
         // Si ya no hay pelotas activas (para el caso en el que se haya activado el power up de las bolas múltiples)
         else if (!BallsPool.Instance.CheckActiveBalls())
         {
-            GameManager.Instance.SetGameState(GameManager.GameState.Preparation);               // Cambia el estado
+            GameManager.Instance.Prepare(playerNum);                                                     // Cambia el estado
             if (playerNum == 1)                                                                 // Si han marcado al Jugador1
             {
                 BallsPool.Instance.GetPooledObject().transform.position = new Vector2(-7, 0);   // Reposiciona la pelota
@@ -75,7 +78,6 @@ public class LvlManager : MonoBehaviour
             {
                 BallsPool.Instance.GetPooledObject().transform.position = new Vector2(7, 0);
             }
-            canGoalKick.Raise(playerNum);                                                       // Avisa quien puede hacer el saque
         }
     }
 }

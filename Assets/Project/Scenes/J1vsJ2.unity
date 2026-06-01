@@ -536,6 +536,18 @@ PrefabInstance:
       propertyPath: directionMultiplier
       value: -1
       objectReference: {fileID: 0}
+    - target: {fileID: 2073236631820739304, guid: 8743f4ff120f43c43aa4d5a4e90267be, type: 3}
+      propertyPath: kickDir
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2073236631820739304, guid: 8743f4ff120f43c43aa4d5a4e90267be, type: 3}
+      propertyPath: playerNum
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2073236631820739304, guid: 8743f4ff120f43c43aa4d5a4e90267be, type: 3}
+      propertyPath: playerName
+      value: Jugador 2
+      objectReference: {fileID: 0}
     - target: {fileID: 2152035975762271497, guid: 8743f4ff120f43c43aa4d5a4e90267be, type: 3}
       propertyPath: m_Name
       value: Player2
@@ -1323,10 +1335,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: LvlManager
       objectReference: {fileID: 0}
-    - target: {fileID: 7129838300374183321, guid: 056468ad19fe53d42adbfc4ceb47a06a, type: 3}
-      propertyPath: goalsTarget
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1404,6 +1412,18 @@ PrefabInstance:
     - target: {fileID: 1016199585983245356, guid: 8743f4ff120f43c43aa4d5a4e90267be, type: 3}
       propertyPath: directionMultiplier
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2073236631820739304, guid: 8743f4ff120f43c43aa4d5a4e90267be, type: 3}
+      propertyPath: kickDir
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2073236631820739304, guid: 8743f4ff120f43c43aa4d5a4e90267be, type: 3}
+      propertyPath: playerNum
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2073236631820739304, guid: 8743f4ff120f43c43aa4d5a4e90267be, type: 3}
+      propertyPath: playerName
+      value: Jugador 1
       objectReference: {fileID: 0}
     - target: {fileID: 2152035975762271497, guid: 8743f4ff120f43c43aa4d5a4e90267be, type: 3}
       propertyPath: m_Name
