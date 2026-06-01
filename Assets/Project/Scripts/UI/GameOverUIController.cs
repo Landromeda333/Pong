@@ -54,13 +54,9 @@ public class GameOverUIController : MonoBehaviour
     // Actualiza el texto con la información correspondiente
     void UpdateText(int num)
     {
-        if (num == 2)
+        if (PlayersDataManager.Instance.playersName.TryGetValue(Mathf.Abs(num - PlayersDataManager.Instance.playersName.Count), out string name))
         {
-            _gameOver.text = "Victoria del Jugador 1";
-        }
-        else
-        {
-            _gameOver.text = "Victoria del Jugador 2";
+            _gameOver.text = "Victoria para " + name;
         }
     }
 

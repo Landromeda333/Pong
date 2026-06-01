@@ -819,6 +819,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4950768603283271123, guid: 8743f4ff120f43c43aa4d5a4e90267be, type: 3}
+      propertyPath: otherActions
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 2291069709648600407, guid: 4f2b66788cbb8f34fb2bea14eee77008, type: 3}
       propertyPath: m_LocalPosition.x
       value: 8
@@ -887,10 +891,6 @@ PrefabInstance:
       propertyPath: playerNum
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 4950768603283271123, guid: 8743f4ff120f43c43aa4d5a4e90267be, type: 3}
-      propertyPath: otherActions
-      value: 
-      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 0}
     - {fileID: 0}
@@ -942,7 +942,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4982482968971152270, guid: 761e0f4687bef594ead377ad552928a0, type: 3}
       propertyPath: playerGoal
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5002819487955278340, guid: 761e0f4687bef594ead377ad552928a0, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1342,7 +1342,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4982482968971152270, guid: 761e0f4687bef594ead377ad552928a0, type: 3}
       propertyPath: playerGoal
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5002819487955278340, guid: 761e0f4687bef594ead377ad552928a0, type: 3}
       propertyPath: m_LocalPosition.x

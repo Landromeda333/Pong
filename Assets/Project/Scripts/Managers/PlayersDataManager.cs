@@ -26,11 +26,11 @@ public class PlayersDataManager : MonoBehaviour
 
     public void SaveName(int playerNum, string name)
     {
-        playersName.Add(playerNum, name);
+        playersName.Add(playerNum-1, name);
     }
 
     public void RemoveName(int playerNum)
     {
-        playersName.Remove(playerNum);
+        playersName.Remove(playerNum-1);
     }
 }
