@@ -1,7 +1,7 @@
 using UnityEngine;
 
 //# Este script se encarga de gestionar el recogible del power up que instancia varias bolas #//
-public class MultipleBalls : MonoBehaviour
+public class MultipleBalls : MonoBehaviour, IResettable
 {
     [SerializeField] int ballsToSpawn;                                                            // Cantidad de bolas a mostrar
 
@@ -34,7 +34,7 @@ public class MultipleBalls : MonoBehaviour
         }
     }
 
-    /* Método para SO Event OnGameOver */
+    /* Método para IResetteable */
     public void OnGameOver()
     {
         gameObject.SetActive(false);

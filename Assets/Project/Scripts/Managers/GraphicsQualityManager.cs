@@ -28,21 +28,12 @@ public class GraphicsQualityManager : MonoBehaviour
     // Aplicación del límite de FPS
     public void SetFPSLimit(int value)
     {
-        if (value != SettingsManager.Instance.data.fps)
-        {
-            SettingsManager.Instance.data.fps = value;
-        }
         Application.targetFrameRate = value;
     }
 
     // Aplicación del nuevo modo de la pantalla
     public void SetScreenMode(string value)
     {
-        if (value != SettingsManager.Instance.data.screenMode)
-        {
-            SettingsManager.Instance.data.screenMode = value;
-        }
-
         switch (value)
         {
             case "Pantalla completa": Screen.fullScreenMode = FullScreenMode.ExclusiveFullScreen; break;

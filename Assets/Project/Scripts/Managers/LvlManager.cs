@@ -69,7 +69,6 @@ public class LvlManager : MonoBehaviour
         // Si ya no hay pelotas activas (para el caso en el que se haya activado el power up de las bolas múltiples)
         else if (!BallsPool.Instance.CheckActiveBalls())
         {
-            GameManager.Instance.Prepare(playerNum);                                                     // Cambia el estado
             if (playerNum == 1)                                                                 // Si han marcado al Jugador1
             {
                 BallsPool.Instance.GetPooledObject().transform.position = new Vector2(-7, 0);   // Reposiciona la pelota
@@ -78,6 +77,7 @@ public class LvlManager : MonoBehaviour
             {
                 BallsPool.Instance.GetPooledObject().transform.position = new Vector2(7, 0);
             }
+            GameManager.Instance.Prepare(playerNum);                                            // Cambia el estado
         }
     }
 }
